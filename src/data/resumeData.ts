@@ -7,7 +7,7 @@ export const resumeData = {
     website: "https://amirulwibowo.my.canva.site/main",
   },
   summary:
-    "Product leader with 7+ years scaling high-impact products across Southeast Asia's e-commerce and logistics sectors. Currently Head of Product at Lion Parcel (Lion Air Group), directing customer-facing channels serving 100K+ MAU and driving 20% YoY revenue growth through retention optimization and AI-powered automation. Previously led buyer experience for ~20M daily visitors at ByteDance, delivering GMV lifts of 5-15% through systematic experimentation and UX optimization. Track record includes 0-1 launches (Indonesia's first cross-platform subscription, same-day inter-island food delivery, AR virtual try-on), AI/ML implementation (NLP-powered WhatsApp commerce automation), and building products that balance growth with profitability. MSc engineer (Imperial College London) who transitioned from technical to product leadership, combining analytical rigor with commercial instincts.",
+    "Welcome to my personal wall of progress.\n\nI'm Amirul, a product leader and engineer who builds things that move metrics and matter to users.\n\nOver 7 years, I've scaled a bootstrapped B2B SaaS to 3x revenue, increased e-commerce conversion by 10% across 20M+ users, and currently a Head of Product at Lion Parcel, solving revenue generation challenges in Southeast Asia's logistics industry.\n\nBeyond my full-time work, I've helped over 5+ companies launch products as an Indie CPO and shared insights on product leadership at Bytedance, Grab, and Telkomsel, among others.\n\nI build products that work in the real world, where user behavior doesn't follow common playbooks.",
   education: [
     {
       institution: "Imperial College London",
