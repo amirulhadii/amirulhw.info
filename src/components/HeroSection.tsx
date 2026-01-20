@@ -22,9 +22,9 @@ export function HeroSection() {
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-foreground leading-tight tracking-tight">
             {personal.name} is
             <br />
-            Head of Product
+            Product Leader
             <br />
-            at Lion Parcel
+            for Consumer Products
           </h1>
         </motion.div>
 
@@ -35,7 +35,7 @@ export function HeroSection() {
           transition={{ duration: 0.6, delay: 0.35 }}
           className="text-lg md:text-xl text-muted-foreground mb-10"
         >
-          7+ years of Product. Indonesian. Jakarta based.
+          7+ years of Product. Indonesia based.
         </motion.p>
 
         {/* Headshot */}
@@ -45,11 +45,7 @@ export function HeroSection() {
           transition={{ duration: 0.7, delay: 0.5 }}
           className="w-full max-w-md md:max-w-lg lg:max-w-xl mb-12"
         >
-          <img
-            src={headshot}
-            alt={personal.name}
-            className="w-full h-auto object-contain"
-          />
+          <img src={headshot} alt={personal.name} className="w-full h-auto object-contain" />
         </motion.div>
 
         {/* Ask Question Bar */}
