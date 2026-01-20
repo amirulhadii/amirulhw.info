@@ -43,17 +43,13 @@ export function HeroSection() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.5 }}
-          className="relative w-full max-w-md md:max-w-lg lg:max-w-xl mb-12"
+          className="w-full max-w-md md:max-w-lg lg:max-w-xl mb-12"
         >
-          <div className="aspect-[3/4] overflow-hidden">
-            <img
-              src={headshot}
-              alt={personal.name}
-              className="w-full h-full object-cover object-top grayscale"
-            />
-          </div>
-          {/* Fade at bottom of image */}
-          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
+          <img
+            src={headshot}
+            alt={personal.name}
+            className="w-full h-auto object-contain"
+          />
         </motion.div>
 
         {/* Ask Question Bar */}
