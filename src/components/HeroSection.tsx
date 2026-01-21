@@ -20,9 +20,10 @@ export function HeroSection() {
           className="max-w-4xl mb-6"
         >
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-foreground leading-tight tracking-tight">
-            {personal.name} is
+            {personal.name}
             <br />
-            Ships 0-1 products at scale. ByteDance → Tokopedia → Lion Parcel. 7 years, millions of users.
+            <br />
+            Ships 0-1 products at scale. Millions of users, millions in revenue.
           </h1>
         </motion.div>
 
@@ -33,7 +34,7 @@ export function HeroSection() {
           transition={{ duration: 0.6, delay: 0.35 }}
           className="text-lg md:text-xl text-muted-foreground mb-10"
         >
-          7+ years of Product. Indonesia based.
+          7+ years of Consumer Products. Indonesia based.
         </motion.p>
 
         {/* Headshot */}
