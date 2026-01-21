@@ -7,7 +7,7 @@ import logoByteDance from "@/assets/logo-bytedance.png";
 const companies = [
   { name: "Machine Vision Indonesia", logo: logoMachineVision, hasLogo: true },
   { name: "Tokopedia", logo: logoTokopedia, hasLogo: true },
-  { name: "ByteDance", logo: logoByteDance, hasLogo: true },
+  { name: "ByteDance", logo: logoByteDance, hasLogo: true, larger: true },
   { name: "Lion Parcel", logo: logoLionParcel, hasLogo: true, larger: true },
 ];
 
@@ -19,7 +19,7 @@ export function LogoMarquee() {
     <section className="py-12 bg-background overflow-hidden">
       <div className="relative">
         <motion.div
-          className="flex gap-16 items-center"
+          className="flex gap-6 items-center"
           animate={{
             x: [0, -400],
           }}
@@ -35,7 +35,7 @@ export function LogoMarquee() {
           {duplicatedCompanies.map((company, index) => (
             <div
               key={`${company.name}-${index}`}
-              className="flex-shrink-0 flex items-center justify-center px-8 py-6 bg-muted/50 rounded-lg min-w-[200px]"
+              className="flex-shrink-0 flex items-center justify-center px-6 py-4 bg-muted/50 rounded-2xl min-w-[180px]"
             >
               {company.hasLogo && company.logo ? (
                 <img 
