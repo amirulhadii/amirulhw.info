@@ -5,10 +5,10 @@ import logoMachineVision from "@/assets/logo-machinevision.png";
 import logoByteDance from "@/assets/logo-bytedance.png";
 
 const companies = [
-  { name: "Machine Vision Indonesia", logo: logoMachineVision, hasLogo: true },
-  { name: "Tokopedia", logo: logoTokopedia, hasLogo: true },
-  { name: "ByteDance", logo: logoByteDance, hasLogo: true, larger: true },
-  { name: "Lion Parcel", logo: logoLionParcel, hasLogo: true, larger: true },
+  { name: "Machine Vision Indonesia", logo: logoMachineVision },
+  { name: "Tokopedia", logo: logoTokopedia },
+  { name: "ByteDance", logo: logoByteDance },
+  { name: "Lion Parcel", logo: logoLionParcel },
 ];
 
 export function LogoMarquee() {
@@ -35,19 +35,13 @@ export function LogoMarquee() {
           {duplicatedCompanies.map((company, index) => (
             <div
               key={`${company.name}-${index}`}
-              className="flex-shrink-0 flex items-center justify-center px-6 py-4 bg-muted/50 rounded-2xl min-w-[180px]"
+              className="flex-shrink-0 flex items-center justify-center w-[220px] h-[80px] bg-muted/50 rounded-2xl"
             >
-              {company.hasLogo && company.logo ? (
-                <img 
-                  src={company.logo} 
-                  alt={company.name} 
-                  className={`${company.larger ? 'h-10 md:h-14' : 'h-8 md:h-10'} w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300`}
-                />
-              ) : (
-                <span className="text-lg md:text-xl font-semibold text-foreground/80 whitespace-nowrap">
-                  {company.name}
-                </span>
-              )}
+              <img 
+                src={company.logo} 
+                alt={company.name} 
+                className="h-12 md:h-14 w-auto max-w-[180px] object-contain grayscale hover:grayscale-0 transition-all duration-300"
+              />
             </div>
           ))}
         </motion.div>
