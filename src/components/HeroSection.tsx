@@ -23,7 +23,7 @@ export function HeroSection() {
             {personal.name.split(" ")[0]}{" "}
             <span className="text-blue-600">{personal.name.split(" ").slice(1).join(" ")}</span>
           </h1>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-medium text-muted-foreground leading-tight tracking-tight mt-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground leading-tight tracking-tight mt-4">
             Ships 0-1 products at scale.
             <br />
             Millions of users, millions in revenue.
