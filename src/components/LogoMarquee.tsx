@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import logoTokopedia from "@/assets/logo-tokopedia.png";
 import logoLionParcel from "@/assets/logo-lionparcel.png";
 import logoMachineVision from "@/assets/logo-machinevision.png";
-import logoByteDance from "@/assets/logo-bytedance.png";
+import logoByteDance from "@/assets/logo-bytedance-cropped.png";
 
 const companies = [
   { name: "Machine Vision Indonesia", logo: logoMachineVision },
@@ -40,7 +40,7 @@ export function LogoMarquee() {
               <img 
                 src={company.logo} 
                 alt={company.name} 
-                className="h-12 md:h-14 w-auto max-w-[180px] object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                className="w-[180px] h-[56px] md:w-[190px] md:h-[60px] object-contain grayscale hover:grayscale-0 transition-all duration-300"
               />
             </div>
           ))}
