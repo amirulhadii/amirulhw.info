@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import logoTokopedia from "@/assets/logo-tokopedia.svg";
+import logoTokopedia from "@/assets/logo-tokopedia.png";
 import logoLionParcel from "@/assets/logo-lionparcel.png";
 import logoMachineVision from "@/assets/logo-machinevision.png";
 
