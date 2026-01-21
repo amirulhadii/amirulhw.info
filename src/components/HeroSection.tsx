@@ -10,7 +10,7 @@ export function HeroSection() {
   return <section className="relative min-h-screen bg-background flex flex-col pt-28 pb-6 overflow-hidden rounded-none py-0">
       <Navbar />
 
-      <div className="container flex-1 flex flex-col justify-center px-0 border-8 rounded-none">
+      <div className="container flex-1 flex flex-col justify-center px-0 rounded-none border-0">
         {/* Main Content - Asymmetric Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Left Side - Large Typography + Question Bar */}
