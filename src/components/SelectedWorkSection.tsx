@@ -48,7 +48,7 @@ export function SelectedWorkSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-3xl md:text-4xl font-display font-bold text-center mb-16 md:mb-24"
+          className="text-4xl md:text-5xl font-display font-bold tracking-tight mb-16 md:mb-24"
         >
           Selected Work
         </motion.h2>
