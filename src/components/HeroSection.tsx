@@ -21,7 +21,7 @@ export function HeroSection() {
         >
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold leading-tight tracking-tight">
             <span className="text-foreground">Amirul</span>{" "}
-            <span className="text-gray-900">Hadi Wibowo</span>
+            <span className="text-gray-500">Hadi Wibowo</span>
           </h1>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground leading-tight tracking-tight mt-4">
             Ships 0-1 products at scale.
