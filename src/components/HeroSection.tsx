@@ -8,7 +8,7 @@ export function HeroSection() {
   const { personal } = resumeData;
 
   return (
-    <section className="relative min-h-screen bg-background flex flex-col pt-28 pb-16 overflow-hidden">
+    <section className="relative min-h-screen bg-background flex flex-col pt-28 pb-6 overflow-hidden">
       <Navbar />
 
       <div className="container px-6 flex-1 flex flex-col justify-center">
