@@ -19,12 +19,12 @@ export function HeroSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="max-w-4xl mb-6"
         >
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-foreground leading-tight tracking-tight">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold text-foreground leading-tight tracking-tight">
             {personal.name}
-            <br />
-            <br />
-            Ships 0-1 products at scale. Millions of users, millions in revenue.
           </h1>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground leading-tight tracking-tight mt-4">
+            Ships 0-1 products at scale.<br />Millions of users, millions in revenue.
+          </h2>
         </motion.div>
 
         {/* Tagline */}
