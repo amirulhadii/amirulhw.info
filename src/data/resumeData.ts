@@ -7,7 +7,7 @@ export const resumeData = {
     website: "https://amirulwibowo.my.canva.site/main",
   },
   summary:
-    "Welcome to my personal wall of progress.\n\nI'm Amirul, a product leader and engineer who builds things that move metrics and matter to users.\n\nOver 7 years, I've scaled a bootstrapped B2B SaaS to 3x revenue, increased e-commerce conversion by 10% across 20M+ users, and currently a Head of Product at Lion Parcel, solving revenue generation challenges in Southeast Asia's logistics industry.\n\nBeyond my full-time work, I've helped over 5+ companies launch products as an Indie CPO and shared insights on product leadership at Bytedance, Grab, and Telkomsel, among others.\n\nI build products that work in the real world, where user behavior doesn't follow common playbooks.",
+    "I'm Amirul, a product leader and engineer who builds things that move metrics and matter to users.\n\nOver 7 years, I've scaled a bootstrapped B2B SaaS to 3x revenue, increased e-commerce conversion by 10% across 20M+ users, and currently a Head of Product at Lion Parcel, solving revenue generation challenges in Southeast Asia's logistics industry.\n\nBeyond my full-time work, I've helped over 5+ companies launch products as an Indie CPO and shared insights on product leadership at Bytedance, Grab, and Telkomsel, among others.\n\nI build products that work in the real world, where user behavior doesn't follow common playbooks.",
   education: [
     {
       institution: "Imperial College London",
