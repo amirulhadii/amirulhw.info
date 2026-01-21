@@ -14,7 +14,7 @@ export function HeroSection() {
       <div className="container px-6 flex-1 flex flex-col justify-center">
         {/* Main Content - Asymmetric Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-          {/* Left Side - Large Typography */}
+          {/* Left Side - Large Typography + Question Bar */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -22,10 +22,20 @@ export function HeroSection() {
             className="text-left"
           >
             <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[7rem] xl:text-[8rem] font-display font-bold leading-[0.9] tracking-tight">
-              <span className="text-foreground">Product</span>
+              <span className="text-foreground">Ships</span>
               <br />
-              <span className="text-foreground">Manager</span>
+              <span className="text-foreground">Products</span>
             </h1>
+            
+            {/* Ask Question Bar */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+              className="w-full max-w-md mt-8"
+            >
+              <AskQuestionBar />
+            </motion.div>
           </motion.div>
 
           {/* Right Side - Photo and Description */}
@@ -50,16 +60,6 @@ export function HeroSection() {
             </p>
           </motion.div>
         </div>
-
-        {/* Ask Question Bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
-          className="w-full max-w-2xl mt-16"
-        >
-          <AskQuestionBar />
-        </motion.div>
       </div>
     </section>
   );
