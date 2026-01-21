@@ -2,13 +2,13 @@ import { motion } from "framer-motion";
 import logoTokopedia from "@/assets/logo-tokopedia.png";
 import logoLionParcel from "@/assets/logo-lionparcel.png";
 import logoMachineVision from "@/assets/logo-machinevision.png";
-import logoByteDance from "@/assets/logo-bytedance-cropped.png";
+import logoByteDance from "@/assets/logo-bytedance.png";
 
 const companies = [
-  { name: "Machine Vision Indonesia", logo: logoMachineVision },
-  { name: "Tokopedia", logo: logoTokopedia },
-  { name: "ByteDance", logo: logoByteDance },
-  { name: "Lion Parcel", logo: logoLionParcel },
+  { name: "Machine Vision Indonesia", logo: logoMachineVision, scale: 1 },
+  { name: "Tokopedia", logo: logoTokopedia, scale: 1 },
+  { name: "ByteDance", logo: logoByteDance, scale: 1.4 },
+  { name: "Lion Parcel", logo: logoLionParcel, scale: 1.1 },
 ];
 
 export function LogoMarquee() {
@@ -41,6 +41,7 @@ export function LogoMarquee() {
                 src={company.logo} 
                 alt={company.name} 
                 className="w-[180px] h-[56px] md:w-[190px] md:h-[60px] object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                style={{ transform: `scale(${company.scale})` }}
               />
             </div>
           ))}
