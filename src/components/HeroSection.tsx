@@ -46,7 +46,7 @@ export function HeroSection() {
             
             {/* Description Text */}
             <p className="text-sm md:text-base text-right text-muted-foreground max-w-xs leading-relaxed">
-              Hi, I'm <span className="text-foreground font-medium">Amirul</span>, A Product Manager Creating Products at Scale with Millions of Users.
+              Hi, I'm <span className="text-foreground font-medium">Amirul</span>. I ship 0-1 products at scale—from concept to millions of users and millions in revenue. 7+ years across marketplaces, logistics, and consumer tech.
             </p>
           </motion.div>
         </div>
