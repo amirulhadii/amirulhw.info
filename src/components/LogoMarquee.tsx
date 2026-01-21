@@ -16,7 +16,7 @@ export function LogoMarquee() {
   const duplicatedCompanies = [...companies, ...companies, ...companies, ...companies];
 
   return (
-    <section className="py-12 bg-background overflow-hidden">
+    <section className="py-4 bg-background overflow-hidden">
       <div className="relative">
         <motion.div
           className="flex gap-6 items-center"
