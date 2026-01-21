@@ -2,16 +2,15 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Sparkles, X, Loader2 } from "lucide-react";
 import { getResumeTextContent, resumeData } from "@/data/resumeData";
-
 interface AskQuestionBarProps {
   onClose?: () => void;
 }
-
-export function AskQuestionBar({ onClose }: AskQuestionBarProps) {
+export function AskQuestionBar({
+  onClose
+}: AskQuestionBarProps) {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-
   const findAnswer = (query: string): string => {
     const q = query.toLowerCase();
     const data = resumeData;
@@ -39,7 +38,7 @@ export function AskQuestionBar({ onClose }: AskQuestionBarProps) {
     }
 
     // Current role / job
-    if (q.includes("current") || (q.includes("work") && q.includes("now")) || q.includes("doing now")) {
+    if (q.includes("current") || q.includes("work") && q.includes("now") || q.includes("doing now")) {
       const current = data.experience[0];
       return `Currently, ${data.personal.name} is ${current.role} at ${current.company}. ${current.description}`;
     }
@@ -117,14 +116,11 @@ export function AskQuestionBar({ onClose }: AskQuestionBarProps) {
         }
       }
     }
-
     return `I couldn't find specific information about that. Try asking about:\n• Work experience & career history\n• Education background\n• Skills & expertise\n• Specific companies (ByteDance, Tokopedia, Lion Parcel)\n• Achievements & certifications\n• Contact information`;
   };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!question.trim()) return;
-
     setIsLoading(true);
     setAnswer(null);
 
@@ -135,62 +131,45 @@ export function AskQuestionBar({ onClose }: AskQuestionBarProps) {
       setIsLoading(false);
     }, 600);
   };
-
   const clearAnswer = () => {
     setAnswer(null);
     setQuestion("");
   };
-
-  return (
-    <motion.div
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      className="w-full bg-card shadow-elevated rounded-2xl overflow-hidden border border-border"
-    >
+  return <motion.div initial={{
+    y: -20,
+    opacity: 0
+  }} animate={{
+    y: 0,
+    opacity: 1
+  }} className="w-full bg-card shadow-elevated rounded-2xl overflow-hidden border border-border">
       <form onSubmit={handleSubmit} className="relative">
         <div className="flex items-center gap-3 p-4">
           <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary/10">
             <Sparkles className="w-5 h-5 text-accent" />
           </div>
-          <input
-            type="text"
-            value={question}
-            onChange={(e) => setQuestion(e.target.value)}
-            placeholder="Got a question? Ask about experience, skills, education..."
-            className="flex-1 bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none text-base"
-          />
-          {question && (
-            <button
-              type="button"
-              onClick={clearAnswer}
-              className="p-2 hover:bg-muted rounded-lg transition-colors"
-            >
+          <input type="text" value={question} onChange={e => setQuestion(e.target.value)} className="flex-1 bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none text-base" placeholder="Any burning questions?" />
+          {question && <button type="button" onClick={clearAnswer} className="p-2 hover:bg-muted rounded-lg transition-colors">
               <X className="w-4 h-4 text-muted-foreground" />
-            </button>
-          )}
-          <button
-            type="submit"
-            disabled={isLoading || !question.trim()}
-            className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary text-primary-foreground hover:opacity-90 transition-opacity disabled:opacity-50"
-          >
-            {isLoading ? (
-              <Loader2 className="w-5 h-5 animate-spin" />
-            ) : (
-              <Search className="w-5 h-5" />
-            )}
+            </button>}
+          <button type="submit" disabled={isLoading || !question.trim()} className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary text-primary-foreground hover:opacity-90 transition-opacity disabled:opacity-50">
+            {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Search className="w-5 h-5" />}
           </button>
         </div>
       </form>
 
       <AnimatePresence>
-        {answer && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="border-t border-border"
-          >
+        {answer && <motion.div initial={{
+        height: 0,
+        opacity: 0
+      }} animate={{
+        height: "auto",
+        opacity: 1
+      }} exit={{
+        height: 0,
+        opacity: 0
+      }} transition={{
+        duration: 0.3
+      }} className="border-t border-border">
             <div className="p-4 bg-secondary/30">
               <p className="text-sm text-muted-foreground mb-2 flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-accent" />
@@ -200,9 +179,7 @@ export function AskQuestionBar({ onClose }: AskQuestionBarProps) {
                 {answer}
               </p>
             </div>
-          </motion.div>
-        )}
+          </motion.div>}
       </AnimatePresence>
-    </motion.div>
-  );
+    </motion.div>;
 }
