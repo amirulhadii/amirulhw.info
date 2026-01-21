@@ -22,9 +22,7 @@ export function HeroSection() {
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-foreground leading-tight tracking-tight">
             {personal.name} is
             <br />
-            Product Leader
-            <br />
-            for Consumer Products
+            Ships 0-1 products at scale. ByteDance → Tokopedia → Lion Parcel. 7 years, millions of users.
           </h1>
         </motion.div>
 
