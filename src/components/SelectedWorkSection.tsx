@@ -18,8 +18,8 @@ const selectedWorks = [
   },
   {
     number: "02",
-    title: "Logistics Route Optimization",
-    metrics: ["Reduced delivery time 18%,", "saved $400K annually in ops costs.", "10M+ parcels processed."],
+    title: "How Tokopedia eliminated promo anxiety at checkout, converting browsers into buyers",
+    metrics: ["+5.95% topline platform GMV", "+2.7% conversion paid orders", "13.3% click rate of promotions products"],
     image: tokopediaImg,
     caseStudyLink: "#",
   },
