@@ -7,7 +7,7 @@ const selectedWorks = [
   {
     number: "01",
     title:
-      "Kulioner by Lion Parcel",
+      "How Kulioner turned a parcel network into a food marketplace, bringing regional specialties to Jakarta with zero vendor friction",
     metrics: [
       "300+ monthly orders within organic release period",
       "+18% user activation (shipping -> food customers)",
