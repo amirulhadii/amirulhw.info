@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import kulionerImg from "@/assets/portfolio-kulioner.png";
-import uixImg from "@/assets/portfolio-uix.png";
+import tokopediaImg from "@/assets/portfolio-tokopedia.png";
 
 const selectedWorks = [
   {
@@ -20,7 +20,7 @@ const selectedWorks = [
     number: "02",
     title: "Logistics Route Optimization",
     metrics: ["Reduced delivery time 18%,", "saved $400K annually in ops costs.", "10M+ parcels processed."],
-    image: uixImg,
+    image: tokopediaImg,
     caseStudyLink: "#",
   },
   {
