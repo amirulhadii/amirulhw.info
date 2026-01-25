@@ -129,57 +129,47 @@ const works: WorkItem[] = [
     longDescription:
       `Every product decision backed by measurable business outcomes—conversion, revenue, and retention.
 
-**Growth & Revenue**
-• +5.95% platform GMV lift (Tokopedia promotional optimization - ~20M daily visitors)
-• +20% YoY revenue growth (Lion Parcel customer apps - 100K+ MAU)
-• +13% power user expansion (Lion Parcel retention programs)
-• 7% monthly recurring revenue (GoTo PLUS subscription launch)
-• +13% MRR from seller promotional marketplace
-• +6% platform commission through merchant tiering optimization
-• +0.8% revenue boost from cross-service monetization
-• 3x revenue growth (Machine Vision, team scale 10→25 employees)
+**Lion Parcel**
+• +20% YoY revenue growth (customer apps - 100K+ MAU)
+• +13% power user expansion (retention programs)
+• 16-33% friction reduction (UX optimization)
+• Reduced tariff check time 24s→16s (-33% friction)
+• Reduced drop-off flow 18s→15s (-16% friction)
+• 300+ monthly orders, 98% ops performance (Kulioner, first same-day inter-island food delivery)
 
-**Conversion & Engagement**
+**ByteDance**
+• Led products serving 20M+ daily platform visitors
+• +7% Shop GMV (context-aware shop page redesign)
+• +0.5% GMV uplift (post-ATC basket building)
+• Coordinated PMs across Indonesia, Singapore, Thailand, Vietnam, Philippines
+
+**Tokopedia**
+• +5.95% platform GMV lift (promotional optimization - ~20M daily visitors)
 • +15% paid orders (AR virtual try-on for cosmetics)
+• +20% engagement (AR try-on feature)
 • +8% order creation (Flash Payment on PDP)
 • +14% add-to-cart rate (automated product storytelling)
 • +12% CTR (recommendation entry point optimization)
-• +7% Shop GMV (context-aware shop page redesign)
 • +3% add-to-cart conversion (shop credibility features)
-• 16-33% friction reduction (Lion Parcel UX optimization)
-• +20% engagement (AR try-on feature)
 • +15% variant interaction (PDP redesign)
-
-**Product Launches (0-1)**
-• 300+ monthly orders, 98% ops performance (Kulioner, first same-day inter-island food delivery)
+• +13% MRR from seller promotional marketplace
+• +6% platform commission through merchant tiering optimization
 • 200K subscribers (GoTo PLUS, Indonesia's first e-commerce subscription)
-• 100K→300K orders/month scaled (informal commerce via WhatsApp automation)
 • +30% daily subscriber growth (PLUS launch phase)
-• 7% MRR growth (GoTo PLUS founding contribution)
+• 4% MRR growth (GoTo PLUS founding contribution)
+• 100K→300K orders/month scaled (informal commerce via WhatsApp automation)
 
-**Operational Excellence**
-• Reduced tariff check time 24s→16s (-33% friction)
-• Reduced drop-off flow 18s→15s (-16% friction)
-• +30% development velocity increase (impact-driven prioritization)
-• 6% operational efficiency gains (OEE monitoring for manufacturing)
-• 98% operational performance maintained at launch (Kulioner)
-
-**Enterprise & B2B**
+**Machine Vision**
+• 3x revenue growth (team scale 10→25 employees)
 • 5+ enterprise deals closed, $100K total project value
 • $50K AR/VR training project (PT Petrokimia Gresik)
 • $30K multi-facility expansion deals (OEE monitoring)
+• 6% operational efficiency gains (OEE monitoring for manufacturing)
 
-**Team & Organizational Impact**
+**Leadership & Scale**
 • Managed 2-7 direct report PMs across levels
 • Coordinated 30-50 person tribes (engineering, data, design, operations)
-• Led products serving 20M+ daily platform visitors
-• 5% of customers generating 40% of revenue (power user identification)
-
-**Geographic Reach**
-• Products deployed across Southeast Asia (Indonesia, Malaysia, Singapore, Thailand, Vietnam, Philippines)
-• Platform reach: 20M+ daily visitors (ByteDance/Tokopedia)
-• Active user base: 100K+ MAU direct ownership (Lion Parcel)
-• Subscription base: 200K+ paying users (GoTo PLUS)`,
+• Products deployed across Southeast Asia (Indonesia, Malaysia, Singapore, Thailand, Vietnam, Philippines)`,
   },
 ];
 
