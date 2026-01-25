@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import kulionerImg from "@/assets/portfolio-kulioner.png";
 import tokopediaImg from "@/assets/portfolio-tokopedia.png";
+import gotoplusImg from "@/assets/portfolio-gotoplus.png";
 
 const selectedWorks = [
   {
@@ -25,9 +26,9 @@ const selectedWorks = [
   },
   {
     number: "03",
-    title: "0-1 Creator Tools Launch",
-    metrics: ["0 to 50K creators in 4 months.", "$1.2M revenue first quarter.", "Led cross-functional team of 12."],
-    image: kulionerImg,
+    title: "How GoTo PLUS created Indonesia's first e-commerce subscription, turning casual buyers into power users",
+    metrics: ["200K subscribers during MVP period", "+33% orders per subscribers (P50)", "+7% MRR via new revenue stream"],
+    image: gotoplusImg,
     caseStudyLink: "#",
   },
 ];
