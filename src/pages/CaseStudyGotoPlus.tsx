@@ -118,6 +118,14 @@ export default function CaseStudyGotoPlus() {
               className="w-full h-auto object-cover"
             />
           </div>
+          <a
+            href="https://www.tokopedia.com/blog/tokopedia-hadirkan-paket-berlangganan-plus-by-goto-pengguna-bisa-nikmati-pengiriman-cepat-dan-bebas-ongkir-tanpa-batas-rls/?utm_source=google&utm_medium=organic"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-center mt-4 text-muted-foreground hover:text-foreground transition-colors font-display font-medium"
+          >
+            Read More on Original Press Release →
+          </a>
         </motion.div>
 
         {/* Metrics Grid */}
