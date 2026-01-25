@@ -271,44 +271,22 @@ export default function CaseStudyGotoPlus() {
           </div>
 
           {/* Go-to-Market Strategy Section */}
-          <div className="space-y-6">
+          <div className="space-y-8">
             <h3 className="text-xl md:text-2xl font-display font-bold text-foreground mb-2">
               Go-to-Market Strategy
             </h3>
 
-            <div className="p-6 bg-muted/50 rounded-xl">
-              <h4 className="font-display font-bold text-foreground mb-4">
-                Pricing strategy: Prove value before asking full price
-              </h4>
-              <p className="text-muted-foreground mb-4">
-                MVP launched at 50% discount—IDR 150K for 6 months (roughly $10 USD). This wasn't the target price; it was a prove-the-value-prop phase.
+            <div className="prose prose-lg max-w-none text-muted-foreground space-y-6">
+              <p>
+                <strong className="text-foreground">Pricing strategy: Prove value before asking full price.</strong> MVP launched at 50% discount—IDR 150K for 6 months (roughly $10 USD). This wasn't the target price; it was a prove-the-value-prop phase. The bet: if users experienced the benefits for 6 months at discount, they'd convert to full-price subscriptions once they saw behavioral change (ordering more frequently, saving on shipping).
               </p>
-              <p className="text-foreground">
-                <strong>The bet:</strong> if users experienced the benefits for 6 months at discount, they'd convert to full-price subscriptions once they saw behavioral change (ordering more frequently, saving on shipping).
-              </p>
-            </div>
 
-            <div className="p-6 bg-muted/50 rounded-xl">
-              <h4 className="font-display font-bold text-foreground mb-4">
-                MVP scope: Java island only
-              </h4>
-              <p className="text-muted-foreground mb-4">
-                Limited geographic rollout to Java where GoTo's logistics density was highest. This ensured we could actually deliver on "fast, reliable shipping" promises. Better to prove model in controlled environment than over-promise nationally and fail.
+              <p>
+                <strong className="text-foreground">MVP scope: Java island only.</strong> Limited geographic rollout to Java where GoTo's logistics density was highest. This ensured we could actually deliver on "fast, reliable shipping" promises. Better to prove model in controlled environment than over-promise nationally and fail. All high-value sellers (Brand Official stores) in Java were auto-enrolled—their products appeared in PLUS-exclusive deals without requiring merchant onboarding. This gave immediate catalog depth.
               </p>
-              <p className="text-muted-foreground">
-                All high-value sellers (Brand Official stores) in Java were auto-enrolled—their products appeared in PLUS-exclusive deals without requiring merchant onboarding. This gave immediate catalog depth.
-              </p>
-            </div>
 
-            <div className="p-6 bg-muted/50 rounded-xl">
-              <h4 className="font-display font-bold text-foreground mb-4">
-                Behavioral design: Make subscription invisible after signup
-              </h4>
-              <p className="text-muted-foreground">
-                Once subscribed, the product just worked. Free shipping applied automatically. Exclusive deals surfaced in search. Partner benefits appeared when relevant.
-              </p>
-              <p className="text-foreground mt-4 font-medium">
-                No monthly decisions. No "am I using this enough?" anxiety. The product removed friction, then got out of the way.
+              <p>
+                <strong className="text-foreground">Behavioral design: Make subscription invisible after signup.</strong> Once subscribed, the product just worked. Free shipping applied automatically. Exclusive deals surfaced in search. Partner benefits appeared when relevant. No monthly decisions. No "am I using this enough?" anxiety. The product removed friction, then got out of the way.
               </p>
             </div>
           </div>
