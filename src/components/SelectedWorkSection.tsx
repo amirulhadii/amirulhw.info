@@ -63,8 +63,17 @@ export function SelectedWorkSection() {
                 }`}
               >
                 {/* Image */}
-                <div className={`overflow-hidden rounded-2xl bg-muted ${index % 2 === 1 ? "md:col-start-2" : ""}`}>
-                  <img src={work.image} alt={work.title} className="w-full h-auto object-cover aspect-[16/10]" />
+                <div
+                  className={`rounded-2xl bg-muted ${index % 2 === 1 ? "md:col-start-2" : ""}`}
+                >
+                  <div className="aspect-[16/10] w-full">
+                    <img
+                      src={work.image}
+                      alt={work.title}
+                      loading="lazy"
+                      className="h-full w-full object-contain"
+                    />
+                  </div>
                 </div>
 
                 {/* Content */}
