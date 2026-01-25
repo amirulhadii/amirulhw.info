@@ -2,16 +2,24 @@ import { motion } from "framer-motion";
 
 const impactStats = [
   {
-    value: "34%",
-    label: "Avg conversion lift",
+    value: "50M+",
+    label: "Consumer platform reach",
   },
   {
-    value: "$3.7M",
-    label: "Revenue generated",
+    value: "$5M+",
+    label: "Annual revenue generated",
   },
   {
-    value: "60M+",
-    label: "Users reached",
+    value: "20+",
+    label: "Enterprise clients closed",
+  },
+  {
+    value: "15+",
+    label: "Major 0-1 Launches",
+  },
+  {
+    value: "+12%",
+    label: "AVG Topline revenue uplift",
   },
 ];
 
@@ -26,10 +34,10 @@ export function ImpactSection() {
           transition={{ duration: 0.6 }}
           className="text-3xl md:text-4xl font-display font-bold text-center mb-16 md:mb-20"
         >
-          Impact by the numbers
+          Running Impact by The Numbers
         </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-6 max-w-5xl mx-auto">
           {impactStats.map((stat, index) => (
             <motion.div
               key={stat.label}
