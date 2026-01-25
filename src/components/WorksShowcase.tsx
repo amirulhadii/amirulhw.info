@@ -10,6 +10,8 @@ import kulionerDocs1 from "@/assets/kulioner-docs-1.png";
 import kulionerDocs2 from "@/assets/kulioner-docs-2.png";
 import kulionerDocs3 from "@/assets/kulioner-docs-3.png";
 import corporateSpeakerImg from "@/assets/work-corporate-speaker.png";
+import workSpeaker1 from "@/assets/work-speaker-1.png";
+import workSpeaker2 from "@/assets/work-speaker-2.png";
 
 interface WorkItem {
   image: string;
@@ -91,11 +93,11 @@ const works: WorkItem[] = [
     longDescription: "Developed an intelligent route optimization system for delivery operations. The system considers multiple factors including traffic patterns, delivery windows, package sizes, and driver capacity. The interface provides drivers with clear navigation and allows dispatchers to manage exceptions in real-time. Implementation resulted in 25% improvement in delivery efficiency and reduced fuel costs."
   },
   {
-    image: corporateSpeakerImg,
-    title: "Product Manager Speakers for Corporate",
-    description: "Corporate training",
-    popupImages: [corporateSpeakerImg],
-    longDescription: "Delivered engaging product management workshops and keynote sessions for corporate teams. Topics include product discovery, data-driven decision making, agile methodologies, and stakeholder management. Sessions are tailored to the specific needs and context of each organization, combining real-world case studies with interactive exercises that participants can immediately apply to their work."
+    image: workSpeaker1,
+    title: "Speakers for Corporate Training",
+    description: "Friendly chat to discuss more about Product and Technology",
+    popupImages: [workSpeaker1, workSpeaker2],
+    longDescription: "Have been actively conducting sharing session within Product & Technology expertise for various clients approached by various training providers (eg. Hacktiv8, ITS campus, Binar Academy). Notable end clients: Grab, Tokopedia, Bytedance, Telkomsel, Telkomcel, Kampus Merdeka, and many more to come."
   },
 ];
 
