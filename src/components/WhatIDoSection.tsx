@@ -35,7 +35,10 @@ export function WhatIDoSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ 
+            duration: 0.8
+            ease: [0.25, 0.1, 0.25, 1]
+          }}
           className="text-3xl md:text-4xl font-display font-bold mb-16 md:mb-20"
         >
           Testimony
@@ -53,7 +56,7 @@ export function WhatIDoSection() {
                 transition: { type: "spring", stiffness: 400, damping: 25 } 
               }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.7, delay: index * 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
               className="flex flex-col p-6 rounded-2xl bg-secondary/50 border border-border/50 hover:border-border cursor-default"
             >
               <div className="flex items-center justify-center w-14 h-14 rounded-full bg-white shadow-sm mb-6">
