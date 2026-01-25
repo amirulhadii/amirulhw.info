@@ -139,23 +139,12 @@ export function WorksShowcase() {
 
       <div className="space-y-6">
         {rows.map((row, rowIndex) => (
-          <div key={rowIndex} className="relative">
-            <motion.div
-              className="flex gap-6"
-              animate={{
-                x: isPaused ? undefined : (rowIndex % 2 === 0 ? [0, -1200] : [-1200, 0]),
-              }}
-              transition={{
-                x: {
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  duration: 30 + rowIndex * 5,
-                  ease: "linear",
-                },
-              }}
-              style={isPaused ? { animationPlayState: "paused" } : undefined}
+          <div key={rowIndex} className="relative overflow-hidden">
+            <div
+              className={`flex gap-6 ${rowIndex % 2 === 0 ? 'animate-marquee-left' : 'animate-marquee-right'}`}
+              style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
             >
-              {/* Double the items for seamless loop */}
+              {/* Triple the items for seamless loop */}
               {[...row, ...row, ...row].map((work, index) => (
                 <motion.div
                   key={`${work.title}-${index}`}
@@ -183,7 +172,7 @@ export function WorksShowcase() {
                   </div>
                 </motion.div>
               ))}
-            </motion.div>
+            </div>
           </div>
         ))}
       </div>
