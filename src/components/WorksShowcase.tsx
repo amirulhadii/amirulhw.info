@@ -133,7 +133,7 @@ const works: WorkItem[] = [
 • +5.95% platform GMV lift (Tokopedia promotional optimization - ~20M daily visitors)
 • +20% YoY revenue growth (Lion Parcel customer apps - 100K+ MAU)
 • +13% power user expansion (Lion Parcel retention programs)
-• 4% monthly recurring revenue (GoTo PLUS subscription launch)
+• 7% monthly recurring revenue (GoTo PLUS subscription launch)
 • +13% MRR from seller promotional marketplace
 • +6% platform commission through merchant tiering optimization
 • +0.8% revenue boost from cross-service monetization
