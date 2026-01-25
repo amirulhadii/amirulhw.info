@@ -20,14 +20,22 @@ const selectedWorks = [
   {
     number: "02",
     title: "How Tokopedia eliminated promo anxiety at checkout, converting browsers into buyers",
-    metrics: ["+5.95% topline platform GMV", "+2.7% conversion paid orders", "+13.3% click rate of promotions products"],
+    metrics: [
+      "+5.95% topline platform GMV",
+      "+2.7% conversion paid orders",
+      "+13.3% click rate of promotions products",
+    ],
     image: tokopediaImg,
     caseStudyLink: "/case-study/tokopedia",
   },
   {
     number: "03",
     title: "How GoTo PLUS created Indonesia's first e-commerce subscription, turning casual buyers into power users",
-    metrics: ["200K subscribers during MVP period", "+33% orders per subscribers (P50)", "+7% MRR via new revenue stream"],
+    metrics: [
+      "200K subscribers during MVP period",
+      "+33% orders per subscribers (P50)",
+      "+7% MRR via new revenue stream",
+    ],
     image: gotoplusImg,
     caseStudyLink: "/case-study/goto-plus",
   },
@@ -44,7 +52,7 @@ export function SelectedWorkSection() {
           transition={{ duration: 0.6 }}
           className="text-4xl md:text-5xl font-display font-bold tracking-tight mb-16 md:mb-24"
         >
-          Product Highlight
+          Products That Moved Metrics
         </motion.h2>
 
         <div className="space-y-16 md:space-y-24">
