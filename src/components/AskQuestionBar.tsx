@@ -14,6 +14,58 @@ export function AskQuestionBar({ onClose }: AskQuestionBarProps) {
     const data = resumeData;
     const content = getResumeTextContent().toLowerCase();
 
+    // HR/Recruiter Questions
+
+    // Relocation
+    if (q.includes("relocation") || q.includes("relocate") || q.includes("move") || q.includes("country") || q.includes("countries") || q.includes("location preference")) {
+      return `Yes, absolutely. My primary targets are UK, Europe (particularly Netherlands, Germany, France), broader EMEA region, and Singapore. I completed my Master's at Imperial College London, so I'm familiar with the UK environment.\n\nThat said, I'm open to discussing opportunities in other regions as well—what matters most is working with companies where technology drives the core business, not just supports it.`;
+    }
+
+    // Notice period
+    if (q.includes("notice period") || q.includes("notice") || q.includes("when can you start") || q.includes("start date") || q.includes("availability")) {
+      return `45 days minimum, plus visa processing requirements. I hold Indonesian citizenship, so I'll need visa sponsorship for international roles.\n\nHappy to coordinate timeline expectations once we align on the opportunity—I understand hiring teams need clarity on start dates, so I'm flexible on working through visa logistics efficiently.`;
+    }
+
+    // Salary
+    if (q.includes("salary") || q.includes("compensation") || q.includes("pay") || q.includes("expected") && q.includes("range")) {
+      return `I'm open to negotiation based on the scope of the role, company stage, and responsibilities involved. However, I'm more focused on finding the right company fit than hitting a specific number.\n\nWhat's most important to me is joining a company where technology is the main revenue driver, with clear growth trajectory and ownership over meaningful product areas.`;
+    }
+
+    // Biggest achievement
+    if (q.includes("biggest") || q.includes("achievement") || q.includes("proud") || q.includes("best product") || q.includes("greatest")) {
+      return `Kulioner—turning Lion Parcel's logistics network into a food marketplace.\n\nThe challenge: Traditional food vendors in regional Indonesia don't use apps, can't manage inventory systems, don't want commission structures. But they make products Jakarta customers would pay for.\n\nThe insight: Lion Parcel already moved packages between cities daily. Could we turn parcels into products?\n\nResults within first quarter:\n• 300+ monthly orders from 100K user base (16% new user activation)\n• 80+ SKUs across 5 major Indonesian islands\n• 98% operational performance\n• Proved logistics assets could support commerce without new infrastructure\n\nThis wasn't about scale—it was about proving a model. Most PMs optimize existing products. I built a new business model by seeing what existing assets could do if you asked a different question.`;
+    }
+
+    // Remote/international teams
+    if (q.includes("remote") || q.includes("international team") || q.includes("distributed") || q.includes("timezone") || q.includes("time zone")) {
+      return `Yes, extensively at ByteDance. I managed product workstreams with mainland China engineering teams and UK-based stakeholders, often across 5-7 hour time zone differences.\n\nI learned that distributed teams require over-communication and clear ownership boundaries. I built systems: detailed PRDs, recorded decision logs, async updates via Slack/Lark, and strategic use of overlap hours for critical discussions.\n\nThe result: we shipped major integration milestones for Tokopedia × TikTok Shop merger without geographic friction becoming a blocker.`;
+    }
+
+    // Why leaving
+    if (q.includes("why leaving") || q.includes("why leave") || q.includes("leaving your") || q.includes("looking for new") || q.includes("change job")) {
+      return `I'm looking to deepen my impact at a company where technology is the main revenue driver, not an enabler.\n\nAt Lion Parcel, technology supports the core business—logistics operations. Product decisions are often constrained by operational realities. It's valuable work, but the leverage is limited.\n\nI want to work somewhere technology IS the business. Where product decisions directly move revenue. Where experimentation can scale without physical constraints. Where I can own P&L and growth metrics end-to-end.\n\nI joined Lion Parcel to prove I could operate in operationally-heavy environments and build 0-1 products in constrained conditions (Kulioner). I've done that. Now I'm ready to apply those skills where technology leverage is higher.`;
+    }
+
+    // Team size/management
+    if (q.includes("team size") || q.includes("how many") && (q.includes("manage") || q.includes("report")) || q.includes("direct report") || q.includes("management style")) {
+      return `Direct reports: 2-7 PMs across different seniority levels (APM to Senior PM)\n\nCross-functional coordination: 30-50 people in a single tribe—engineers, data analysts, designers, business operations, marketing\n\nManagement style: I focus on outcomes, not output. I give PMs ownership over their domains with clear success metrics, then unblock them rather than micromanage.\n\nThe hardest part isn't managing down—it's managing up and across. Keeping execs informed without over-reporting. Negotiating engineering resources with peer PMs. Aligning marketing on launch timing. That's where most PMs struggle, and it's where I've built the most reps.`;
+    }
+
+    // Product metrics
+    if (q.includes("metric") || q.includes("kpi") || q.includes("measure") || q.includes("success") && q.includes("track")) {
+      return `Primary metrics: Conversion, retention, acquisition—ultimately driving GMV/revenue.\n\nBut specific metrics depend on product stage:\n\n• For 0-1 launches (Kulioner, GoTo PLUS): Focus on activation and early retention. Unit economics can wait—first prove people want it.\n\n• For growth optimization (Tokopedia, ByteDance): Conversion and revenue. A 2.7% conversion increase on 20M daily visitors is massive.\n\n• For retention products (GoTo PLUS): Order frequency, LTV, churn.\n\nI avoid vanity metrics. My mantra at ByteDance was: "If this metric improves 10%, can I walk into the VP's office and say we made more money or kept more users?" If not, it's not the right metric.`;
+    }
+
+    // CV/Portfolio request
+    if (q.includes("cv") || q.includes("resume") || q.includes("portfolio") || q.includes("linkedin")) {
+      return `Yes—please email me at ${data.personal.email} and I'll send over my complete CV.\n\nYou can also review my portfolio here on the site, or connect with me on LinkedIn to see recommendations from former managers and peers at ByteDance, Tokopedia, and Lion Parcel.\n\nIf you're evaluating for a specific role, let me know the company and scope—I'm happy to tailor the conversation to what's most relevant for your needs.`;
+    }
+
+    // Visa/sponsorship
+    if (q.includes("visa") || q.includes("sponsorship") || q.includes("work permit") || q.includes("citizenship")) {
+      return `I hold Indonesian citizenship, so I'll need visa sponsorship for international roles. I completed my Master's at Imperial College London, so I'm familiar with UK visa processes.\n\nMy primary targets are UK, Europe (Netherlands, Germany, France), EMEA, and Singapore. I'm flexible on working through visa logistics efficiently and can coordinate timeline expectations once we align on the opportunity.`;
+    }
+
     // Name and contact
     if (q.includes("name") || q.includes("who is") || q.includes("who are")) {
       return `This is ${data.personal.name}, a Product Leader based in ${data.personal.location}. You can reach them at ${data.personal.email}.`;
