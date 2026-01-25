@@ -168,7 +168,7 @@ export function AskQuestionBar({ onClose }: AskQuestionBarProps) {
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
             className="flex-1 bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none text-base"
-            placeholder="Got 30 seconds? Ask me anything"
+            placeholder="30 seconds? Ask about my work"
           />
           {question && (
             <button type="button" onClick={clearAnswer} className="p-2 hover:bg-muted rounded-lg transition-colors">
