@@ -4,7 +4,7 @@ import { useRef, useEffect, useState } from "react";
 const impactStats = [
   {
     value: "50M+",
-    numericValue: 50,
+    numericValue: 65,
     suffix: "M+",
     label: "Consumer platform reach",
   },
