@@ -85,7 +85,7 @@ function CountUpNumber({
 
 export function ImpactSection() {
   return (
-    <section className="py-20 md:py-32 bg-secondary/30">
+    <section id="records" className="py-20 md:py-32 bg-secondary/30">
       <div className="container">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}

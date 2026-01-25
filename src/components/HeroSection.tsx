@@ -36,6 +36,7 @@ export function HeroSection() {
 
             {/* Ask Question Bar */}
             <motion.div
+              id="question-bar"
               initial={{
                 opacity: 0,
                 y: 20,

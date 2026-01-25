@@ -6,7 +6,7 @@ export function ContactSection() {
   const { personal } = resumeData;
 
   return (
-    <section className="py-20 md:py-32 bg-primary">
+    <section id="contact" className="py-20 md:py-32 bg-primary">
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

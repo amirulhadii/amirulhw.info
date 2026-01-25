@@ -7,10 +7,11 @@ export function Navbar() {
 
   const navItems = [
     { label: firstName, href: "#" },
-    { label: "Experience", href: "#experience" },
-    { label: "Portfolio", href: "#portfolio" },
-    { label: "LinkedIn", href: "https://linkedin.com", external: true },
-    { label: "Get in touch", href: `mailto:${personal.email}` },
+    { label: "Q&A", href: "#question-bar" },
+    { label: "Products That Moved Metrics", href: "#portfolio" },
+    { label: "Track Records", href: "#records" },
+    { label: "Peer Reviews", href: "#testimonials" },
+    { label: "Ready to talk", href: "#contact" },
   ];
 
   return (
@@ -26,8 +27,6 @@ export function Navbar() {
             <li key={item.label}>
               <a
                 href={item.href}
-                target={item.external ? "_blank" : undefined}
-                rel={item.external ? "noopener noreferrer" : undefined}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors inline-block
                   ${index === 0 
                     ? "text-foreground font-semibold" 

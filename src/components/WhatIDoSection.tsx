@@ -32,7 +32,7 @@ const testimonials = [
 
 export function WhatIDoSection() {
   return (
-    <section className="py-20 md:py-32 bg-background">
+    <section id="testimonials" className="py-20 md:py-32 bg-background">
       <div className="container">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
