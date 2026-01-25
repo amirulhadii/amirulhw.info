@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 const navItems = [
   { label: "Q&A", href: "#hero" },
@@ -11,33 +11,25 @@ const navItems = [
 export function Navbar() {
   const [activeSection, setActiveSection] = useState("hero");
 
-  useEffect(() => {
+  const updateActiveSection = useCallback(() => {
     const sectionIds = navItems.map((item) => item.href.replace("#", ""));
+    const scrollPosition = window.scrollY + 150;
 
-    const observers: IntersectionObserver[] = [];
-
-    sectionIds.forEach((id) => {
-      const element = document.getElementById(id);
-      if (element) {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                setActiveSection(id);
-              }
-            });
-          },
-          { rootMargin: "-40% 0px -50% 0px", threshold: 0 }
-        );
-        observer.observe(element);
-        observers.push(observer);
+    for (let i = sectionIds.length - 1; i >= 0; i--) {
+      const element = document.getElementById(sectionIds[i]);
+      if (element && element.offsetTop <= scrollPosition) {
+        setActiveSection(sectionIds[i]);
+        return;
       }
-    });
-
-    return () => {
-      observers.forEach((observer) => observer.disconnect());
-    };
+    }
+    setActiveSection(sectionIds[0]);
   }, []);
+
+  useEffect(() => {
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    return () => window.removeEventListener("scroll", updateActiveSection);
+  }, [updateActiveSection]);
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
