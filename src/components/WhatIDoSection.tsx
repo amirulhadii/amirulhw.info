@@ -47,9 +47,10 @@ export function WhatIDoSection() {
               key={item.logoAlt}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -6, transition: { duration: 0.2 } }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex flex-col p-6 rounded-2xl bg-secondary/50 border border-border/50 hover:border-border transition-colors"
+              className="flex flex-col p-6 rounded-2xl bg-secondary/50 border border-border/50 hover:border-border hover:shadow-lg transition-all cursor-default"
             >
               <div className="flex items-center justify-center w-14 h-14 rounded-full bg-white shadow-sm mb-6">
                 <img
