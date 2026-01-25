@@ -7,6 +7,7 @@ import workSpeaker2 from "@/assets/work-speaker-2.png";
 import workLionParcel from "@/assets/work-lionparcel.png";
 import workBeautyAr1 from "@/assets/work-beauty-ar-1.png";
 import workBeautyAr2 from "@/assets/work-beauty-ar-2.png";
+import workTiktokTokopedia from "@/assets/work-tiktok-tokopedia.png";
 
 interface WorkItem {
   image: string;
@@ -65,6 +66,14 @@ const works: WorkItem[] = [
     popupImages: [workBeautyAr1, workBeautyAr2],
     longDescription: "Pioneered Tokopedia's first augmented reality feature for cosmetics during pandemic lockdowns when physical try-on wasn't possible. Led product strategy, UX design, and cross-functional launch (engineering, beauty brands, marketing).\n\nImpact:\n• +15% paid orders in featured cosmetics\n• +20% user engagement (session time, product interactions)\n• Restored category sales to pre-pandemic levels\n• Reduced return rates by helping customers make confident purchase decisions\n\nTechnical implementation integrated real-time face tracking, color matching algorithms, and seamless camera-to-cart. Proved AR could drive measurable commerce outcomes, not just gimmick engagement.",
     readMoreLink: "https://www.tokopedia.com/blog/tokopedia-hadirkan-fitur-augmented-reality-ar-masyarakat-bisa-mencoba-makeup-secara-virtual-rls/"
+  },
+  {
+    image: workTiktokTokopedia,
+    title: "Core Product Integration - Tokopedia × TikTok Shop",
+    description: "Led buyer experience integration for SEA's largest marketplace merger, managing 70% GMV share",
+    popupImages: [workTiktokTokopedia],
+    longDescription: "Managed critical integration workstreams for ByteDance's acquisition of Tokopedia, ensuring seamless buyer experience across merged platforms.\n\nLed Product Detail Page, Reviews, and Shop Page integration serving ~20M daily visitors.\n\nKey launches:\n• **Review system integration**: Unified review display across Tokopedia and TikTok Shop, maintaining trust signals during platform merge\n• **Post-ATC basket building**: Optimized add-to-cart journey with cross-platform recommendations, driving +0.5% GMV uplift\n• **Shop page redesign**: Context-aware merchant pages with complementary algorithms based on user journey, achieving +7% Shop GMV\n\nCoordinated PMs and Engineering/Design/Data leaders across Indonesia, Singapore, Thailand, Vietnam, Philippines markets. Delivered integration milestones while maintaining platform stability and growth metrics.",
+    readMoreLink: "https://www.thejakartapost.com/business/2023/12/11/tiktok-marks-e-commerce-return-with-1-5-billion-deal-to-acquire-tokopedia.html"
   },
 ];
 
