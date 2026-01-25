@@ -13,6 +13,7 @@ import workSwing1 from "@/assets/work-swing-1.png";
 import workSwing2 from "@/assets/work-swing-2.png";
 import workSwing3 from "@/assets/work-swing-3.png";
 import workArsitag from "@/assets/work-arsitag.png";
+import workCareerProgression from "@/assets/work-career-progression.png";
 
 interface WorkItem {
   image: string;
@@ -101,6 +102,13 @@ const works: WorkItem[] = [
     popupImages: [workArsitag],
     longDescription: "Platform connecting property owners with verified design professionals and contractors.\n\nAct as indie product developer for marketplace addressing fragmentation in residential construction and renovation services. Product enables homeowners to discover, compare, and hire architects, interior designers, and contractors through transparent pricing and portfolio reviews.\n\nKey features:\n• **Professional portfolios**: Project galleries, certifications, client reviews\n• **Quote comparison**: Multiple bids for same project scope, transparent pricing\n• **Project management**: Milestone tracking, payment escrow, progress documentation\n• **Quality assurance**: Verification system for professional credentials and past work",
     readMoreLink: "https://www.arsitag.com/"
+  },
+  {
+    image: workCareerProgression,
+    title: "Career Progression & Industry Recognition",
+    description: "7 years from engineer to Head of Product across SEA's leading tech companies",
+    popupImages: [workCareerProgression],
+    longDescription: "**Professional Trajectory**\n\n2025 (ongoing) - Head of Product, Lion Parcel Customer Apps\nManaging 100K+ MAU across customer-facing channels, driving 20% YoY revenue growth\n\n2024 - Product Manager, ByteDance SEA (E-Commerce Lead)\nLed buyer experience for ~20M daily visitors across Tokopedia and TikTok Shop integration\n\n2023 - Senior Product Manager (Acting Lead), Tokopedia\nPromoted to leadership role managing PDP and restriction engine products\n\n2021-2023 - Product Manager I/II, Tokopedia\nAccepted into Tokopedia Product Acceleration Program, launched GoTo PLUS subscription\n\n2020-2021 - Chief Business Development Officer, Machine Vision Indonesia\nPromoted from Head of Digital Transformation, scaled team 10→25 employees, 3x revenue growth\n\n**Education**\n\nMSc Future Power Networks, Imperial College London - 2020\nLPDP Master's Scholarship (Ministry of Finance full-ride) - Merit degree\n\nBEng Electrical Engineering, Institut Teknologi Sepuluh Nopember - 2018\nGPA 3.39/4.00\n\n**Recognition & Achievements**\n• Consulting Leadership Program - McKinsey & Company (2024)\n• Top Performers Award - ByteDance SEA Product (2024)\n• Tokopedia Ignite Future Leaders (2023)\n• Employee Award \"Growth Mindset\" - Tokopedia (2022, 2023)\n• Generasi Gigih Instructor - GoTo Foundation (2022)\n• Professional Scrum Product Owner I (PSPO I) - Scrum.org (2023)\n• Global Business Skills - GoAccelerate GBS (2023)"
   },
 ];
 
