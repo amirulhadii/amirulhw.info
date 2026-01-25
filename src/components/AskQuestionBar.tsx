@@ -5,9 +5,7 @@ import { getResumeTextContent, resumeData } from "@/data/resumeData";
 interface AskQuestionBarProps {
   onClose?: () => void;
 }
-export function AskQuestionBar({
-  onClose
-}: AskQuestionBarProps) {
+export function AskQuestionBar({ onClose }: AskQuestionBarProps) {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -32,54 +30,61 @@ export function AskQuestionBar({
     }
 
     // Education
-    if (q.includes("education") || q.includes("study") || q.includes("university") || q.includes("degree") || q.includes("school") || q.includes("college")) {
-      const edu = data.education.map(e => `• ${e.degree} from ${e.institution} (${e.period})`).join("\n");
+    if (
+      q.includes("education") ||
+      q.includes("study") ||
+      q.includes("university") ||
+      q.includes("degree") ||
+      q.includes("school") ||
+      q.includes("college")
+    ) {
+      const edu = data.education.map((e) => `• ${e.degree} from ${e.institution} (${e.period})`).join("\n");
       return `Education:\n${edu}`;
     }
 
     // Current role / job
-    if (q.includes("current") || q.includes("work") && q.includes("now") || q.includes("doing now")) {
+    if (q.includes("current") || (q.includes("work") && q.includes("now")) || q.includes("doing now")) {
       const current = data.experience[0];
       return `Currently, ${data.personal.name} is ${current.role} at ${current.company}. ${current.description}`;
     }
 
     // Experience / work history
     if (q.includes("experience") || q.includes("work") || q.includes("career") || q.includes("job")) {
-      return `${data.personal.name} has 7+ years of product leadership experience:\n${data.experience.map(e => `• ${e.role} at ${e.company} (${e.period})`).join("\n")}`;
+      return `${data.personal.name} has 7+ years of product leadership experience:\n${data.experience.map((e) => `• ${e.role} at ${e.company} (${e.period})`).join("\n")}`;
     }
 
     // ByteDance
     if (q.includes("bytedance") || q.includes("tiktok")) {
-      const bd = data.experience.find(e => e.company === "ByteDance");
+      const bd = data.experience.find((e) => e.company === "ByteDance");
       if (bd) {
-        return `At ByteDance (${bd.period}), ${data.personal.name} was ${bd.role}.\n\nKey achievements:\n${bd.highlights.map(h => `• ${h}`).join("\n")}`;
+        return `At ByteDance (${bd.period}), ${data.personal.name} was ${bd.role}.\n\nKey achievements:\n${bd.highlights.map((h) => `• ${h}`).join("\n")}`;
       }
     }
 
     // Tokopedia
     if (q.includes("tokopedia") || q.includes("goto")) {
-      const tk = data.experience.find(e => e.company === "Tokopedia");
+      const tk = data.experience.find((e) => e.company === "Tokopedia");
       if (tk) {
-        return `At Tokopedia (${tk.period}), ${data.personal.name} was ${tk.role}.\n\nKey achievements:\n${tk.highlights.map(h => `• ${h}`).join("\n")}`;
+        return `At Tokopedia (${tk.period}), ${data.personal.name} was ${tk.role}.\n\nKey achievements:\n${tk.highlights.map((h) => `• ${h}`).join("\n")}`;
       }
     }
 
     // Lion Parcel
     if (q.includes("lion") || q.includes("parcel") || q.includes("logistics")) {
-      const lp = data.experience.find(e => e.company === "Lion Parcel");
+      const lp = data.experience.find((e) => e.company === "Lion Parcel");
       if (lp) {
-        return `At Lion Parcel (${lp.period}), ${data.personal.name} is ${lp.role}.\n\nKey achievements:\n${lp.highlights.map(h => `• ${h}`).join("\n")}`;
+        return `At Lion Parcel (${lp.period}), ${data.personal.name} is ${lp.role}.\n\nKey achievements:\n${lp.highlights.map((h) => `• ${h}`).join("\n")}`;
       }
     }
 
     // Skills
     if (q.includes("skill") || q.includes("expertise") || q.includes("good at") || q.includes("specialize")) {
-      return `Key skills and expertise:\n${data.skills.map(s => `• ${s}`).join("\n")}`;
+      return `Key skills and expertise:\n${data.skills.map((s) => `• ${s}`).join("\n")}`;
     }
 
     // Certifications
     if (q.includes("certif") || q.includes("award") || q.includes("achievement") || q.includes("recognition")) {
-      return `Certifications & Achievements:\n${data.certifications.map(c => `• ${c}`).join("\n")}`;
+      return `Certifications & Achievements:\n${data.certifications.map((c) => `• ${c}`).join("\n")}`;
     }
 
     // Summary / about
@@ -103,12 +108,18 @@ export function AskQuestionBar({
     }
 
     // Metrics / impact
-    if (q.includes("metric") || q.includes("impact") || q.includes("result") || q.includes("growth") || q.includes("revenue")) {
+    if (
+      q.includes("metric") ||
+      q.includes("impact") ||
+      q.includes("result") ||
+      q.includes("growth") ||
+      q.includes("revenue")
+    ) {
       return `Key impact metrics:\n• 20% YoY channel revenue growth at Lion Parcel\n• 100K+ MAU and 150K+ monthly shipments managed\n• GMV lifts of 5-15% at ByteDance\n• ~20M daily visitors experience managed at Tokopedia\n• +15% paid orders with AR try-on feature\n• 3x revenue growth at Machine Vision Indonesia`;
     }
 
     // Generic fallback - search for keywords in content
-    const keywords = q.split(" ").filter(w => w.length > 3);
+    const keywords = q.split(" ").filter((w) => w.length > 3);
     for (const keyword of keywords) {
       if (content.includes(keyword)) {
         if (q.includes("?") || q.includes("what") || q.includes("how") || q.includes("why") || q.includes("when")) {
@@ -135,51 +146,75 @@ export function AskQuestionBar({
     setAnswer(null);
     setQuestion("");
   };
-  return <motion.div initial={{
-    y: -20,
-    opacity: 0
-  }} animate={{
-    y: 0,
-    opacity: 1
-  }} className="w-full bg-card shadow-elevated rounded-2xl overflow-hidden border border-border">
+  return (
+    <motion.div
+      initial={{
+        y: -20,
+        opacity: 0,
+      }}
+      animate={{
+        y: 0,
+        opacity: 1,
+      }}
+      className="w-full bg-card shadow-elevated rounded-2xl overflow-hidden border border-border"
+    >
       <form onSubmit={handleSubmit} className="relative">
         <div className="flex items-center gap-3 p-4">
           <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary/10">
             <Sparkles className="w-5 h-5 text-accent" />
           </div>
-          <input type="text" value={question} onChange={e => setQuestion(e.target.value)} className="flex-1 bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none text-base" placeholder="Any burning questions?" />
-          {question && <button type="button" onClick={clearAnswer} className="p-2 hover:bg-muted rounded-lg transition-colors">
+          <input
+            type="text"
+            value={question}
+            onChange={(e) => setQuestion(e.target.value)}
+            className="flex-1 bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none text-base"
+            placeholder="Got 30 seconds? Ask me anything"
+          />
+          {question && (
+            <button type="button" onClick={clearAnswer} className="p-2 hover:bg-muted rounded-lg transition-colors">
               <X className="w-4 h-4 text-muted-foreground" />
-            </button>}
-          <button type="submit" disabled={isLoading || !question.trim()} className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary text-primary-foreground hover:opacity-90 transition-opacity disabled:opacity-50">
+            </button>
+          )}
+          <button
+            type="submit"
+            disabled={isLoading || !question.trim()}
+            className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary text-primary-foreground hover:opacity-90 transition-opacity disabled:opacity-50"
+          >
             {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Search className="w-5 h-5" />}
           </button>
         </div>
       </form>
 
       <AnimatePresence>
-        {answer && <motion.div initial={{
-        height: 0,
-        opacity: 0
-      }} animate={{
-        height: "auto",
-        opacity: 1
-      }} exit={{
-        height: 0,
-        opacity: 0
-      }} transition={{
-        duration: 0.3
-      }} className="border-t border-border">
+        {answer && (
+          <motion.div
+            initial={{
+              height: 0,
+              opacity: 0,
+            }}
+            animate={{
+              height: "auto",
+              opacity: 1,
+            }}
+            exit={{
+              height: 0,
+              opacity: 0,
+            }}
+            transition={{
+              duration: 0.3,
+            }}
+            className="border-t border-border"
+          >
             <div className="p-4 bg-secondary/30">
               <p className="text-sm text-muted-foreground mb-2 flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-accent" />
                 Answer
               </p>
-              <p className="text-foreground whitespace-pre-line leading-relaxed">
-                {answer}
-              </p>
+              <p className="text-foreground whitespace-pre-line leading-relaxed">{answer}</p>
             </div>
-          </motion.div>}
+          </motion.div>
+        )}
       </AnimatePresence>
-    </motion.div>;
+    </motion.div>
+  );
 }
