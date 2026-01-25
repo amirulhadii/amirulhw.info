@@ -36,15 +36,15 @@ const impactStats = [
   },
 ];
 
-function CountUpNumber({ 
-  value, 
-  prefix = "", 
-  suffix = "", 
-  duration = 2 
-}: { 
-  value: number; 
-  prefix?: string; 
-  suffix?: string; 
+function CountUpNumber({
+  value,
+  prefix = "",
+  suffix = "",
+  duration = 2,
+}: {
+  value: number;
+  prefix?: string;
+  suffix?: string;
   duration?: number;
 }) {
   const [count, setCount] = useState(0);
@@ -60,7 +60,7 @@ function CountUpNumber({
     const animate = (timestamp: number) => {
       if (!startTime) startTime = timestamp;
       const progress = Math.min((timestamp - startTime) / (duration * 1000), 1);
-      
+
       // Easing function for smooth deceleration
       const easeOut = 1 - Math.pow(1 - progress, 3);
       setCount(Math.floor(easeOut * value));
@@ -76,7 +76,9 @@ function CountUpNumber({
 
   return (
     <span ref={ref}>
-      {prefix}{count}{suffix}
+      {prefix}
+      {count}
+      {suffix}
     </span>
   );
 }
@@ -92,7 +94,7 @@ export function ImpactSection() {
           transition={{ duration: 0.6 }}
           className="text-3xl md:text-4xl font-display font-bold text-center mb-16 md:mb-20"
         >
-          Running Impact by The Numbers
+          Track Record
         </motion.h2>
 
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-6 max-w-5xl mx-auto">
@@ -106,9 +108,9 @@ export function ImpactSection() {
               className="text-center"
             >
               <div className="text-4xl md:text-5xl font-display font-bold text-foreground mb-3">
-                <CountUpNumber 
-                  value={stat.numericValue} 
-                  prefix={stat.prefix} 
+                <CountUpNumber
+                  value={stat.numericValue}
+                  prefix={stat.prefix}
                   suffix={stat.suffix}
                   duration={1.5 + index * 0.2}
                 />
