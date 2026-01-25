@@ -112,11 +112,11 @@ export default function CaseStudyTokopedia() {
         transition={{ duration: 0.6, delay: 0.2 }}
         className="container mb-16 md:mb-24"
       >
-        <div className="rounded-2xl overflow-hidden bg-muted max-w-4xl">
+        <div className="rounded-2xl overflow-hidden bg-muted">
           <img
             src={tokopediaImg}
             alt="Tokopedia Checkout Experience"
-            className="w-full aspect-video object-cover"
+            className="w-full object-cover"
           />
         </div>
       </motion.section>
