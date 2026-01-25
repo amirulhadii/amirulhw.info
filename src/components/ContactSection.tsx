@@ -48,11 +48,11 @@ export function ContactSection() {
               href="https://wa.me/6287852298982?text=Hi%20Amirul%2C%20could%20you%20share%20your%20full%20resume%3F"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary-foreground/10 text-primary-foreground rounded-full font-medium hover:bg-primary-foreground/20 transition-colors w-full sm:w-auto sm:min-w-[200px]"
+              className="group inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary-foreground/10 text-primary-foreground rounded-full font-medium hover:bg-primary-foreground/20 transition-colors w-full sm:w-auto whitespace-nowrap"
             >
-              <MessageCircle className="w-4 h-4" />
+              <MessageCircle className="w-4 h-4 shrink-0" />
               <span>Request Resume</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform shrink-0" />
             </a>
           </div>
         </motion.div>
