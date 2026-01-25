@@ -4,6 +4,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { X } from "lucide-react";
 import workSpeaker1 from "@/assets/work-speaker-1.png";
 import workSpeaker2 from "@/assets/work-speaker-2.png";
+import workLionParcel from "@/assets/work-lionparcel.png";
 
 interface WorkItem {
   image: string;
@@ -20,6 +21,13 @@ const works: WorkItem[] = [
     description: "Friendly chat to discuss more about Product and Technology",
     popupImages: [workSpeaker1, workSpeaker2],
     longDescription: "Have been actively conducting sharing session within Product & Technology expertise for various clients approached by various training providers (eg. Hacktiv8, ITS campus, Binar Academy).\n\nNotable end clients: Grab, Tokopedia, Bytedance, Telkomsel, Telkomcel, Kampus Merdeka, and many more to come."
+  },
+  {
+    image: workLionParcel,
+    title: "Lion Parcel Customer Apps - Friction Reduction",
+    description: "Reduced conversion friction by 16-33% through systematic UX optimization and A/B testing",
+    popupImages: [workLionParcel],
+    longDescription: "Led complete UX overhaul for Lion Parcel's customer apps serving 100K+ MAU and 150K+ monthly shipments.\n\nResults:\n• Cut tariff check time from 24s to 16s (-33% friction)\n• Reduced drop-off flow from 18s to 15s (-16% friction)"
   },
 ];
 
