@@ -29,7 +29,7 @@ const selectedWorks = [
     title: "How GoTo PLUS created Indonesia's first e-commerce subscription, turning casual buyers into power users",
     metrics: ["200K subscribers during MVP period", "+33% orders per subscribers (P50)", "+7% MRR via new revenue stream"],
     image: gotoplusImg,
-    caseStudyLink: "#",
+    caseStudyLink: "/case-study/goto-plus",
   },
 ];
 
