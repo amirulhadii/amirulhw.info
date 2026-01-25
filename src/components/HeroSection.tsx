@@ -6,7 +6,7 @@ import headshot from "@/assets/headshot.png";
 export function HeroSection() {
   const { personal } = resumeData;
   return (
-    <section className="relative bg-background flex flex-col pt-28 pb-8 overflow-hidden rounded-none">
+    <section id="hero" className="relative bg-background flex flex-col pt-28 pb-8 overflow-hidden rounded-none">
       <Navbar />
 
       <div className="container flex-1 flex flex-col justify-center px-0 rounded-none border-0">
