@@ -2,6 +2,16 @@ import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import kulionerImg from "@/assets/portfolio-kulioner.png";
+import kulionerDocs1 from "@/assets/kulioner-docs-1.png";
+import kulionerDocs2 from "@/assets/kulioner-docs-2.png";
+import kulionerDocs3 from "@/assets/kulioner-docs-3.png";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const metrics = [
   { value: "300+", label: "monthly orders within organic release period" },
@@ -354,6 +364,65 @@ export default function CaseStudyKulioner() {
               was yes.
             </p>
           </div>
+        </motion.div>
+      </section>
+
+      {/* Documentation Gallery */}
+      <section className="container mb-20 md:mb-32">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4">
+            Documentation
+          </h2>
+          <h3 className="text-3xl md:text-4xl font-display font-bold tracking-tight mb-8">
+            From the field
+          </h3>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="relative"
+        >
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-4">
+              {[
+                { src: kulionerImg, alt: "Kulioner App Interface", caption: "In-app product discovery" },
+                { src: kulionerDocs1, alt: "Packaged products ready for shipment", caption: "Packages prepared for cross-island transit" },
+                { src: kulionerDocs2, alt: "Delivery handoff to customer", caption: "Last-mile delivery to Jakarta customers" },
+                { src: kulionerDocs3, alt: "Kulioner branded packaging", caption: "Branded packaging for customer delight" },
+              ].map((image, index) => (
+                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-2/5">
+                  <div className="rounded-2xl overflow-hidden bg-muted">
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      className="w-full aspect-[4/5] object-cover"
+                    />
+                    <div className="p-4 bg-muted/80">
+                      <p className="text-sm text-muted-foreground">{image.caption}</p>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="flex justify-end gap-2 mt-6">
+              <CarouselPrevious className="static translate-y-0" />
+              <CarouselNext className="static translate-y-0" />
+            </div>
+          </Carousel>
         </motion.div>
       </section>
 
