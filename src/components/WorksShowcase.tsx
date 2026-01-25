@@ -9,6 +9,9 @@ import workBeautyAr1 from "@/assets/work-beauty-ar-1.png";
 import workBeautyAr2 from "@/assets/work-beauty-ar-2.png";
 import workTiktokTokopedia from "@/assets/work-tiktok-tokopedia.png";
 import workVrTraining from "@/assets/work-vr-training.png";
+import workSwing1 from "@/assets/work-swing-1.png";
+import workSwing2 from "@/assets/work-swing-2.png";
+import workSwing3 from "@/assets/work-swing-3.png";
 
 interface WorkItem {
   image: string;
@@ -81,6 +84,14 @@ const works: WorkItem[] = [
     popupImages: [workVrTraining],
     longDescription: "Built Indonesia's first AR/VR learning management system for industrial safety training.\n\nPartnered with PT Petrokimia Gresik (state-owned fertilizer manufacturer) to develop immersive training platform for hazardous environment procedures.\n\nThe system enabled workers to practice emergency procedures, equipment operation, and safety protocols in virtual environments before entering actual production facilities. Initial contract established scalable training standard for Indonesia's fertilizer industry while reducing training costs and improving safety protocol retention.\n\nThis project became the anchor portfolio that secured Oculus Facebook partnership as Asia-Pacific Independent Software Vendor, positioned the company as ASEAN Global Startup Awards 2020 Finalist, and obtained government grant supporting Indonesia's Ministry of Industry 4.0 roadmap. Proved VR/AR could deliver measurable ROI in industrial training, not just entertainment applications.",
     readMoreLink: "https://hcdev.petrokimia-gresik.com/learningexperience/vr.html"
+  },
+  {
+    image: workSwing1,
+    title: "Swing - Sports Booking, Tournament, and Marketplace",
+    description: "End-to-end sports platform connecting venues, players, and tournaments across Indonesia",
+    popupImages: [workSwing1, workSwing2, workSwing3],
+    longDescription: "End-to-end sports platform connecting venues, players, and tournaments across Indonesia.\n\nAct as indie product developer for comprehensive sports management app, starting with golf booking and expanding to multi-sport coverage. Secured private investor funding in late 2025, validating product-market fit in Indonesia's growing recreational sports market.\n\nFeatures:\n• **Venue booking**: Real-time court/field availability across multiple sports facilities with instant confirmation\n• **Tournament management**: Automated bracket generation, live scoring, player registration, and prize distribution\n• **Marketplace**: Peer-to-peer trading for sports equipment and gear\n• **Community building**: Skill-based player matching, local rankings, and sports community discovery\n\nBuilt to solve the coordination friction in golf initially, as this vertical was pretty conventional. With proven willingness-to-pay, expanding to padel, badminton, tennis, and futsal based on demand patterns.",
+    readMoreLink: "https://getswing.app"
   },
 ];
 
