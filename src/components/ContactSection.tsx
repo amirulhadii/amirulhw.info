@@ -15,14 +15,12 @@ export function ContactSection() {
           transition={{ duration: 0.6 }}
           className="text-center max-w-2xl mx-auto"
         >
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-primary-foreground mb-6">
-            Let's talk
-          </h2>
+          <h2 className="text-3xl md:text-4xl font-display font-bold text-primary-foreground mb-6">Ready to talk?</h2>
 
           <p className="text-primary-foreground/70 text-lg mb-10">
-            Open to PM roles in Europe
+            Targeting PM roles (Leadership and Individual Contributors) abroad
             <br />
-            (visa sponsorship needed)
+            Visa sponsorship required
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -36,7 +34,7 @@ export function ContactSection() {
             </a>
 
             <a
-              href="https://linkedin.com/in/amirulhadiwibowo"
+              href="https://linkedin.com/in/amirulhadii/"
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-2 px-6 py-3 bg-primary-foreground/10 text-primary-foreground rounded-full font-medium hover:bg-primary-foreground/20 transition-colors"
