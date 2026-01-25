@@ -168,7 +168,7 @@ export default function CaseStudyGotoPlus() {
                 key={index}
                 className="flex items-start gap-3 text-muted-foreground"
               >
-                <span className="text-accent font-bold">{index + 1}.</span>
+                <span className="text-foreground font-bold">{index + 1}.</span>
                 <span>{challenge}</span>
               </div>
             ))}
@@ -187,7 +187,7 @@ export default function CaseStudyGotoPlus() {
                   key={index}
                   className="flex items-start gap-3 text-muted-foreground"
                 >
-                  <span className="text-accent font-bold">{index + 1}.</span>
+                  <span className="text-foreground font-bold">{index + 1}.</span>
                   <span>{item}</span>
                 </div>
               ))}
@@ -246,7 +246,7 @@ export default function CaseStudyGotoPlus() {
                   <li>• Lower minimum purchase threshold (25K instead of typical 50-100K)</li>
                   <li>• No calculating "am I buying enough to qualify for free shipping?"</li>
                 </ul>
-                <p className="mt-4 text-sm text-accent">
+                <p className="mt-4 text-sm text-muted-foreground">
                   This removed the mental math that delayed purchases. Need something? Just buy it. No threshold optimization.
                 </p>
               </div>
@@ -260,7 +260,7 @@ export default function CaseStudyGotoPlus() {
                     <li key={index}>• {benefit}</li>
                   ))}
                 </ul>
-                <p className="mt-4 text-sm text-accent">
+                <p className="mt-4 text-sm text-muted-foreground">
                   PLUS members get access to deals non-members can't see. This created FOMO-driven adoption beyond pure shipping economics.
                 </p>
               </div>
@@ -293,7 +293,7 @@ export default function CaseStudyGotoPlus() {
             </div>
 
             {/* Behavioral Design */}
-            <div className="p-6 bg-accent/10 rounded-xl">
+            <div className="p-6 bg-muted/50 rounded-xl">
               <h3 className="font-display font-bold text-foreground mb-4">
                 Behavioral design: Make subscription invisible after signup
               </h3>
