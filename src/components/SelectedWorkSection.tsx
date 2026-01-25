@@ -43,7 +43,7 @@ export function SelectedWorkSection() {
           transition={{ duration: 0.6 }}
           className="text-4xl md:text-5xl font-display font-bold tracking-tight mb-16 md:mb-24"
         >
-          Selected Work
+          Product Highlight
         </motion.h2>
 
         <div className="space-y-16 md:space-y-24">
