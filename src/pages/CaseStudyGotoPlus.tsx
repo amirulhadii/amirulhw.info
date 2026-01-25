@@ -149,7 +149,7 @@ export default function CaseStudyGotoPlus() {
           <h2 className="text-2xl md:text-3xl font-display font-bold mb-2">
             The Opportunity
           </h2>
-          <p className="text-lg text-accent mb-8">
+          <p className="text-lg text-muted-foreground mb-8">
             Building loyalty in a price-sensitive, low-frequency market
           </p>
 
@@ -212,7 +212,7 @@ export default function CaseStudyGotoPlus() {
           <h2 className="text-2xl md:text-3xl font-display font-bold mb-2">
             The Solution
           </h2>
-          <p className="text-lg text-accent mb-8">
+          <p className="text-lg text-muted-foreground mb-8">
             Subscription mechanics designed for Indonesian market behavior
           </p>
 
