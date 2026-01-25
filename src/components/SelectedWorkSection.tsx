@@ -19,7 +19,7 @@ const selectedWorks = [
   {
     number: "02",
     title: "How Tokopedia eliminated promo anxiety at checkout, converting browsers into buyers",
-    metrics: ["+5.95% topline platform GMV", "+2.7% conversion paid orders", "13.3% click rate of promotions products"],
+    metrics: ["+5.95% topline platform GMV", "+2.7% conversion paid orders", "+13.3% click rate of promotions products"],
     image: tokopediaImg,
     caseStudyLink: "#",
   },
