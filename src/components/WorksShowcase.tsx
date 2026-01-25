@@ -19,7 +19,7 @@ const works: WorkItem[] = [
     title: "Speakers for Corporate Training",
     description: "Friendly chat to discuss more about Product and Technology",
     popupImages: [workSpeaker1, workSpeaker2],
-    longDescription: "Have been actively conducting sharing session within Product & Technology expertise for various clients approached by various training providers (eg. Hacktiv8, ITS campus, Binar Academy). Notable end clients: Grab, Tokopedia, Bytedance, Telkomsel, Telkomcel, Kampus Merdeka, and many more to come."
+    longDescription: "Have been actively conducting sharing session within Product & Technology expertise for various clients approached by various training providers (eg. Hacktiv8, ITS campus, Binar Academy).\n\nNotable end clients: Grab, Tokopedia, Bytedance, Telkomsel, Telkomcel, Kampus Merdeka, and many more to come."
   },
 ];
 
@@ -131,7 +131,7 @@ export function WorksShowcase() {
 
               {/* Long Description */}
               <div className="prose prose-lg max-w-none">
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
                   {selectedWork.longDescription}
                 </p>
               </div>
