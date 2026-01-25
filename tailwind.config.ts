@@ -139,22 +139,40 @@ export default {
   					transform: 'translateY(0)'
   				}
   			},
-  			'pulse-soft': {
-  				'0%, 100%': {
-  					opacity: '1'
-  				},
-  				'50%': {
-  					opacity: '0.7'
-  				}
-  			}
-  		},
-  		animation: {
-  			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out',
-  			'fade-in': 'fade-in 0.5s ease-out',
-  			'slide-up': 'slide-up 0.6s ease-out',
-  			'pulse-soft': 'pulse-soft 2s ease-in-out infinite'
-  		},
+			'pulse-soft': {
+				'0%, 100%': {
+					opacity: '1'
+				},
+				'50%': {
+					opacity: '0.7'
+				}
+			},
+			'marquee-left': {
+				'0%': {
+					transform: 'translateX(0)'
+				},
+				'100%': {
+					transform: 'translateX(-33.333%)'
+				}
+			},
+			'marquee-right': {
+				'0%': {
+					transform: 'translateX(-33.333%)'
+				},
+				'100%': {
+					transform: 'translateX(0)'
+				}
+			}
+		},
+		animation: {
+			'accordion-down': 'accordion-down 0.2s ease-out',
+			'accordion-up': 'accordion-up 0.2s ease-out',
+			'fade-in': 'fade-in 0.5s ease-out',
+			'slide-up': 'slide-up 0.6s ease-out',
+			'pulse-soft': 'pulse-soft 2s ease-in-out infinite',
+			'marquee-left': 'marquee-left 30s linear infinite',
+			'marquee-right': 'marquee-right 35s linear infinite'
+		},
   		boxShadow: {
   			'2xs': 'var(--shadow-2xs)',
   			xs: 'var(--shadow-xs)',
