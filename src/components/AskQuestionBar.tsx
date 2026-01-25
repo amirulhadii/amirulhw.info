@@ -42,7 +42,7 @@ export function AskQuestionBar({ onClose }: AskQuestionBarProps) {
     }
 
     // Why leaving
-    if (q.includes("why leaving") || q.includes("why leave") || q.includes("leaving your") || q.includes("looking for new") || q.includes("change job")) {
+    if (q.includes("why leaving") || q.includes("why leave") || q.includes("why left") || q.includes("leaving your") || q.includes("looking for new") || q.includes("change job")) {
       return `I'm looking to deepen my impact at a company where technology is the main revenue driver, not an enabler.\n\nAt Lion Parcel, technology supports the core business—logistics operations. Product decisions are often constrained by operational realities. It's valuable work, but the leverage is limited.\n\nI want to work somewhere technology IS the business. Where product decisions directly move revenue. Where experimentation can scale without physical constraints. Where I can own P&L and growth metrics end-to-end.\n\nI joined Lion Parcel to prove I could operate in operationally-heavy environments and build 0-1 products in constrained conditions (Kulioner). I've done that. Now I'm ready to apply those skills where technology leverage is higher.`;
     }
 
