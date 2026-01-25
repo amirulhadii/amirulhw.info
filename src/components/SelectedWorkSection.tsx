@@ -14,7 +14,7 @@ const selectedWorks = [
       "80+ SKUs across 5 major Indonesian islands",
     ],
     image: kulionerImg,
-    caseStudyLink: "#",
+    caseStudyLink: "/case-study/kulioner",
   },
   {
     number: "02",
