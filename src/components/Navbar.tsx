@@ -1,12 +1,8 @@
 import { motion } from "framer-motion";
-import { resumeData } from "@/data/resumeData";
 
 export function Navbar() {
-  const { personal } = resumeData;
-  const firstName = personal.name.split(" ")[0];
 
   const navItems = [
-    { label: firstName, href: "#" },
     { label: "Q&A", href: "#question-bar" },
     { label: "Products That Moved Metrics", href: "#portfolio" },
     { label: "Track Records", href: "#records" },
