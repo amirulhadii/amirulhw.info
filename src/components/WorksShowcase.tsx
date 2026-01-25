@@ -14,7 +14,34 @@ interface WorkItem {
   description: string;
   popupImages: string[];
   longDescription: string;
+  readMoreLink?: string;
 }
+
+// Helper to render text with clickable links
+const renderDescription = (text: string, readMoreLink?: string) => {
+  // Remove the inline URL from text if readMoreLink is provided
+  let cleanText = text;
+  if (readMoreLink) {
+    cleanText = text.replace(/\n\nRead more:.*?\n\n/s, '\n\n');
+  }
+  
+  return (
+    <>
+      <span className="whitespace-pre-line">{cleanText}</span>
+      {readMoreLink && (
+        <a 
+          href={readMoreLink} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="inline-block mt-4 text-primary hover:underline font-medium"
+          onClick={(e) => e.stopPropagation()}
+        >
+          Read more →
+        </a>
+      )}
+    </>
+  );
+};
 
 const works: WorkItem[] = [
   {
@@ -36,7 +63,8 @@ const works: WorkItem[] = [
     title: "Indonesia's First Beauty AR for E-Commerce",
     description: "Launched AR virtual try-on during COVID-19, driving +15% paid orders for the featured products",
     popupImages: [workBeautyAr1, workBeautyAr2],
-    longDescription: "Pioneered Tokopedia's first augmented reality feature for cosmetics during pandemic lockdowns when physical try-on wasn't possible. Led product strategy, UX design, and cross-functional launch (engineering, beauty brands, marketing).\n\nRead more: https://www.tokopedia.com/blog/tokopedia-hadirkan-fitur-augmented-reality-ar-masyarakat-bisa-mencoba-makeup-secara-virtual-rls/\n\nImpact:\n• +15% paid orders in featured cosmetics\n• +20% user engagement (session time, product interactions)\n• Restored category sales to pre-pandemic levels\n• Reduced return rates by helping customers make confident purchase decisions\n\nTechnical implementation integrated real-time face tracking, color matching algorithms, and seamless camera-to-cart. Proved AR could drive measurable commerce outcomes, not just gimmick engagement."
+    longDescription: "Pioneered Tokopedia's first augmented reality feature for cosmetics during pandemic lockdowns when physical try-on wasn't possible. Led product strategy, UX design, and cross-functional launch (engineering, beauty brands, marketing).\n\nImpact:\n• +15% paid orders in featured cosmetics\n• +20% user engagement (session time, product interactions)\n• Restored category sales to pre-pandemic levels\n• Reduced return rates by helping customers make confident purchase decisions\n\nTechnical implementation integrated real-time face tracking, color matching algorithms, and seamless camera-to-cart. Proved AR could drive measurable commerce outcomes, not just gimmick engagement.",
+    readMoreLink: "https://www.tokopedia.com/blog/tokopedia-hadirkan-fitur-augmented-reality-ar-masyarakat-bisa-mencoba-makeup-secara-virtual-rls/"
   },
 ];
 
@@ -100,11 +128,11 @@ export function WorksShowcase() {
                         className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                       />
                     </div>
-                    <div className="p-4">
-                      <h3 className="font-display font-semibold text-foreground text-sm md:text-base">
+                    <div className="p-4 h-24 flex flex-col">
+                      <h3 className="font-display font-semibold text-foreground text-sm md:text-base line-clamp-1">
                         {work.title}
                       </h3>
-                      <p className="text-muted-foreground text-xs md:text-sm">
+                      <p className="text-muted-foreground text-xs md:text-sm line-clamp-2 mt-1">
                         {work.description}
                       </p>
                     </div>
@@ -148,9 +176,9 @@ export function WorksShowcase() {
 
               {/* Long Description */}
               <div className="prose prose-lg max-w-none">
-                <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
-                  {selectedWork.longDescription}
-                </p>
+                <div className="text-muted-foreground leading-relaxed">
+                  {renderDescription(selectedWork.longDescription, selectedWork.readMoreLink)}
+                </div>
               </div>
             </div>
           )}
