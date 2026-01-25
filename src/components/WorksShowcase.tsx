@@ -12,6 +12,7 @@ import workVrTraining from "@/assets/work-vr-training.png";
 import workSwing1 from "@/assets/work-swing-1.png";
 import workSwing2 from "@/assets/work-swing-2.png";
 import workSwing3 from "@/assets/work-swing-3.png";
+import workArsitag from "@/assets/work-arsitag.png";
 
 interface WorkItem {
   image: string;
@@ -92,6 +93,14 @@ const works: WorkItem[] = [
     popupImages: [workSwing1, workSwing2, workSwing3],
     longDescription: "End-to-end sports platform connecting venues, players, and tournaments across Indonesia.\n\nAct as indie product developer for comprehensive sports management app, starting with golf booking and expanding to multi-sport coverage. Secured private investor funding in late 2025, validating product-market fit in Indonesia's growing recreational sports market.\n\nFeatures:\n• **Venue booking**: Real-time court/field availability across multiple sports facilities with instant confirmation\n• **Tournament management**: Automated bracket generation, live scoring, player registration, and prize distribution\n• **Marketplace**: Peer-to-peer trading for sports equipment and gear\n• **Community building**: Skill-based player matching, local rankings, and sports community discovery\n\nBuilt to solve the coordination friction in golf initially, as this vertical was pretty conventional. With proven willingness-to-pay, expanding to padel, badminton, tennis, and futsal based on demand patterns.",
     readMoreLink: "https://getswing.app"
+  },
+  {
+    image: workArsitag,
+    title: "Marketplace for Architects, Designers & Contractors",
+    description: "Platform connecting property owners with verified design professionals and contractors",
+    popupImages: [workArsitag],
+    longDescription: "Platform connecting property owners with verified design professionals and contractors.\n\nAct as indie product developer for marketplace addressing fragmentation in residential construction and renovation services. Product enables homeowners to discover, compare, and hire architects, interior designers, and contractors through transparent pricing and portfolio reviews.\n\nKey features:\n• **Professional portfolios**: Project galleries, certifications, client reviews\n• **Quote comparison**: Multiple bids for same project scope, transparent pricing\n• **Project management**: Milestone tracking, payment escrow, progress documentation\n• **Quality assurance**: Verification system for professional credentials and past work",
+    readMoreLink: "https://www.arsitag.com/"
   },
 ];
 
