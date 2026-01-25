@@ -10,7 +10,7 @@ const selectedWorks = [
       "How Kulioner turned a parcel network into a food marketplace, bringing regional specialties to Jakarta with zero vendor friction",
     metrics: [
       "300+ monthly orders within organic release,",
-      "+18% user activation (shipping -> food customers",
+      "+18% user activation (shipping -> food customers)",
       "80+ SKUs across 5 major Indonesian islands",
     ],
     image: kulionerImg,
