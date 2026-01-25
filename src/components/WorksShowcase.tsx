@@ -20,25 +20,23 @@ interface WorkItem {
 
 // Helper to render text with clickable links
 const renderDescription = (text: string, readMoreLink?: string) => {
-  // Remove the inline URL from text if readMoreLink is provided
-  let cleanText = text;
-  if (readMoreLink) {
-    cleanText = text.replace(/\n\nRead more:.*?\n\n/s, '\n\n');
-  }
   
   return (
     <>
-      <span className="whitespace-pre-line">{cleanText}</span>
+      <span className="whitespace-pre-line">{text}</span>
       {readMoreLink && (
-        <a 
-          href={readMoreLink} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="inline-block mt-4 text-primary hover:underline font-medium"
-          onClick={(e) => e.stopPropagation()}
-        >
-          Read more →
-        </a>
+        <>
+          <br /><br />
+          <a 
+            href={readMoreLink} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-primary hover:underline font-medium"
+            onClick={(e) => e.stopPropagation()}
+          >
+            Read more →
+          </a>
+        </>
       )}
     </>
   );
@@ -50,21 +48,21 @@ const works: WorkItem[] = [
     title: "Speakers for Corporate Training",
     description: "Friendly chat to discuss more about Product and Technology",
     popupImages: [workSpeaker1, workSpeaker2],
-    longDescription: "Have been actively conducting sharing session within Product & Technology expertise for various clients approached by various training providers (eg. Hacktiv8, ITS campus, Binar Academy).\n\nNotable end clients: Grab, Tokopedia, Bytedance, Telkomsel, Telkomcel, Kampus Merdeka, and many more to come."
+    longDescription: "Friendly chat to discuss more about Product and Technology.\n\nHave been actively conducting sharing session within Product & Technology expertise for various clients approached by various training providers (eg. Hacktiv8, ITS campus, Binar Academy).\n\nNotable end clients: Grab, Tokopedia, Bytedance, Telkomsel, Telkomcel, Kampus Merdeka, and many more to come."
   },
   {
     image: workLionParcel,
     title: "Lion Parcel Customer Apps - Friction Reduction",
     description: "Reduced conversion friction by 16-33% through systematic UX optimization and A/B testing",
     popupImages: [workLionParcel],
-    longDescription: "Led complete UX overhaul for Lion Parcel's customer apps serving 100K+ MAU and 150K+ monthly shipments.\n\nResults:\n• Cut tariff check time from 24s to 16s (-33% friction)\n• Reduced drop-off flow from 18s to 15s (-16% friction)"
+    longDescription: "Reduced conversion friction by 16-33% through systematic UX optimization and A/B testing.\n\nLed complete UX overhaul for Lion Parcel's customer apps serving 100K+ MAU and 150K+ monthly shipments.\n\nResults:\n• Cut tariff check time from 24s to 16s (-33% friction)\n• Reduced drop-off flow from 18s to 15s (-16% friction)"
   },
   {
     image: workBeautyAr1,
     title: "Indonesia's First Beauty AR for E-Commerce",
     description: "Launched AR virtual try-on during COVID-19, driving +15% paid orders for the featured products",
     popupImages: [workBeautyAr1, workBeautyAr2],
-    longDescription: "Pioneered Tokopedia's first augmented reality feature for cosmetics during pandemic lockdowns when physical try-on wasn't possible. Led product strategy, UX design, and cross-functional launch (engineering, beauty brands, marketing).\n\nImpact:\n• +15% paid orders in featured cosmetics\n• +20% user engagement (session time, product interactions)\n• Restored category sales to pre-pandemic levels\n• Reduced return rates by helping customers make confident purchase decisions\n\nTechnical implementation integrated real-time face tracking, color matching algorithms, and seamless camera-to-cart. Proved AR could drive measurable commerce outcomes, not just gimmick engagement.",
+    longDescription: "Launched AR virtual try-on during COVID-19, driving +15% paid orders for the featured products.\n\nPioneered Tokopedia's first augmented reality feature for cosmetics during pandemic lockdowns when physical try-on wasn't possible. Led product strategy, UX design, and cross-functional launch (engineering, beauty brands, marketing).\n\nImpact:\n• +15% paid orders in featured cosmetics\n• +20% user engagement (session time, product interactions)\n• Restored category sales to pre-pandemic levels\n• Reduced return rates by helping customers make confident purchase decisions\n\nTechnical implementation integrated real-time face tracking, color matching algorithms, and seamless camera-to-cart. Proved AR could drive measurable commerce outcomes, not just gimmick engagement.",
     readMoreLink: "https://www.tokopedia.com/blog/tokopedia-hadirkan-fitur-augmented-reality-ar-masyarakat-bisa-mencoba-makeup-secara-virtual-rls/"
   },
   {
@@ -72,7 +70,7 @@ const works: WorkItem[] = [
     title: "Core Product Integration - Tokopedia × TikTok Shop",
     description: "Led buyer experience integration for SEA's largest marketplace merger, managing 70% GMV share",
     popupImages: [workTiktokTokopedia],
-    longDescription: "Managed critical integration workstreams for ByteDance's acquisition of Tokopedia, ensuring seamless buyer experience across merged platforms.\n\nLed Product Detail Page, Reviews, and Shop Page integration serving ~20M daily visitors.\n\nKey launches:\n• **Review system integration**: Unified review display across Tokopedia and TikTok Shop, maintaining trust signals during platform merge\n• **Post-ATC basket building**: Optimized add-to-cart journey with cross-platform recommendations, driving +0.5% GMV uplift\n• **Shop page redesign**: Context-aware merchant pages with complementary algorithms based on user journey, achieving +7% Shop GMV\n\nCoordinated PMs and Engineering/Design/Data leaders across Indonesia, Singapore, Thailand, Vietnam, Philippines markets. Delivered integration milestones while maintaining platform stability and growth metrics.",
+    longDescription: "Led buyer experience integration for SEA's largest marketplace merger, managing 70% GMV share.\n\nManaged critical integration workstreams for ByteDance's acquisition of Tokopedia, ensuring seamless buyer experience across merged platforms.\n\nLed Product Detail Page, Reviews, and Shop Page integration serving ~20M daily visitors.\n\nKey launches:\n• **Review system integration**: Unified review display across Tokopedia and TikTok Shop, maintaining trust signals during platform merge\n• **Post-ATC basket building**: Optimized add-to-cart journey with cross-platform recommendations, driving +0.5% GMV uplift\n• **Shop page redesign**: Context-aware merchant pages with complementary algorithms based on user journey, achieving +7% Shop GMV\n\nCoordinated PMs and Engineering/Design/Data leaders across Indonesia, Singapore, Thailand, Vietnam, Philippines markets. Delivered integration milestones while maintaining platform stability and growth metrics.",
     readMoreLink: "https://www.thejakartapost.com/business/2023/12/11/tiktok-marks-e-commerce-return-with-1-5-billion-deal-to-acquire-tokopedia.html"
   },
 ];
