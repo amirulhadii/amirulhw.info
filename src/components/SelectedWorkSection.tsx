@@ -43,7 +43,7 @@ const selectedWorks = [
 
 export function SelectedWorkSection() {
   return (
-    <section className="py-20 md:py-32">
+    <section id="portfolio" className="py-20 md:py-32">
       <div className="container">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
