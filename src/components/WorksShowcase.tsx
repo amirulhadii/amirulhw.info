@@ -9,6 +9,7 @@ import uixImg from "@/assets/portfolio-uix.png";
 import kulionerDocs1 from "@/assets/kulioner-docs-1.png";
 import kulionerDocs2 from "@/assets/kulioner-docs-2.png";
 import kulionerDocs3 from "@/assets/kulioner-docs-3.png";
+import corporateSpeakerImg from "@/assets/work-corporate-speaker.png";
 
 interface WorkItem {
   image: string;
@@ -88,6 +89,13 @@ const works: WorkItem[] = [
     description: "Delivery efficiency",
     popupImages: [uixImg],
     longDescription: "Developed an intelligent route optimization system for delivery operations. The system considers multiple factors including traffic patterns, delivery windows, package sizes, and driver capacity. The interface provides drivers with clear navigation and allows dispatchers to manage exceptions in real-time. Implementation resulted in 25% improvement in delivery efficiency and reduced fuel costs."
+  },
+  {
+    image: corporateSpeakerImg,
+    title: "Product Manager Speakers for Corporate",
+    description: "Corporate training",
+    popupImages: [corporateSpeakerImg],
+    longDescription: "Delivered engaging product management workshops and keynote sessions for corporate teams. Topics include product discovery, data-driven decision making, agile methodologies, and stakeholder management. Sessions are tailored to the specific needs and context of each organization, combining real-world case studies with interactive exercises that participants can immediately apply to their work."
   },
 ];
 
