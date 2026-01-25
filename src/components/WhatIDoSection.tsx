@@ -37,7 +37,7 @@ export function WhatIDoSection() {
           viewport={{ once: true }}
           transition={{ 
             duration: 0.8
-            ease: [0.25, 0.1, 0.25, 1]
+            ease: "easeOut"
           }}
           className="text-3xl md:text-4xl font-display font-bold mb-16 md:mb-20"
         >
@@ -56,7 +56,7 @@ export function WhatIDoSection() {
                 transition: { type: "spring", stiffness: 400, damping: 25 } 
               }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: index * 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
+              transition={{ duration: 0.7, delay: index * 0.15, ease: "easOut"}
               className="flex flex-col p-6 rounded-2xl bg-secondary/50 border border-border/50 hover:border-border cursor-default"
             >
               <div className="flex items-center justify-center w-14 h-14 rounded-full bg-white shadow-sm mb-6">
