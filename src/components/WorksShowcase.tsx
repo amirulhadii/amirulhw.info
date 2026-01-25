@@ -101,10 +101,10 @@ const works: WorkItem[] = [
   },
 ];
 
-// Split into 2 rows of 5
+// Split into 2 rows
 const rows = [
-  works.slice(0, 5),
-  works.slice(5, 10),
+  works.slice(0, 6),
+  works.slice(6, 11),
 ];
 
 export function WorksShowcase() {
