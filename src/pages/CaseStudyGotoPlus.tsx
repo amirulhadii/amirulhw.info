@@ -216,25 +216,20 @@ export default function CaseStudyGotoPlus() {
             Subscription mechanics designed for Indonesian market behavior
           </p>
 
-          <div className="prose prose-lg max-w-none text-muted-foreground space-y-6">
+          <div className="prose prose-lg max-w-none text-muted-foreground space-y-6 mb-16">
             <p>
-              Rather than copying Western subscription models, GoTo PLUS was built around what actually drove purchase decisions in Indonesia: shipping costs and exclusive access.
+              Rather than copying Western subscription models, GoTo PLUS was built around what actually drove purchase decisions in Indonesia: shipping costs and exclusive access. The primary barrier to higher order frequency wasn't product selection—it was the cost and uncertainty of shipping. Free shipping promotions drove massive spikes in orders, but users waited for deals rather than buying when they needed something. The core value proposition: remove that friction entirely, making frequent ordering feel frictionless instead of economically painful.
             </p>
           </div>
 
-          {/* Core Value Proposition */}
-          <div className="mt-10 space-y-8">
-            <div className="p-6 bg-muted/50 rounded-xl">
-              <h3 className="font-display font-bold text-foreground mb-2">
-                Core value proposition: Remove friction from frequent ordering
-              </h3>
-              <p className="text-muted-foreground mb-4">
-                The primary barrier to higher order frequency wasn't product selection—it was the cost and uncertainty of shipping. Free shipping promotions drove massive spikes in orders, but users waited for deals rather than buying when they needed something.
-              </p>
-              <p className="text-foreground font-medium">
-                GoTo PLUS flipped the model:
-              </p>
-            </div>
+          {/* The Model Section */}
+          <div className="mb-16">
+            <h3 className="text-xl md:text-2xl font-display font-bold text-foreground mb-2">
+              The Model
+            </h3>
+            <p className="text-muted-foreground mb-8">
+              GoTo PLUS flipped the traditional e-commerce model
+            </p>
 
             <div className="grid md:grid-cols-2 gap-6">
               <div className="p-6 border border-border rounded-xl">
@@ -265,12 +260,18 @@ export default function CaseStudyGotoPlus() {
                 </p>
               </div>
             </div>
+          </div>
 
-            {/* Pricing Strategy */}
+          {/* Go-to-Market Strategy Section */}
+          <div className="space-y-6">
+            <h3 className="text-xl md:text-2xl font-display font-bold text-foreground mb-2">
+              Go-to-Market Strategy
+            </h3>
+
             <div className="p-6 bg-muted/50 rounded-xl">
-              <h3 className="font-display font-bold text-foreground mb-4">
+              <h4 className="font-display font-bold text-foreground mb-4">
                 Pricing strategy: Prove value before asking full price
-              </h3>
+              </h4>
               <p className="text-muted-foreground mb-4">
                 MVP launched at 50% discount—IDR 150K for 6 months (roughly $10 USD). This wasn't the target price; it was a prove-the-value-prop phase.
               </p>
@@ -279,11 +280,10 @@ export default function CaseStudyGotoPlus() {
               </p>
             </div>
 
-            {/* MVP Scope */}
-            <div className="p-6 border border-border rounded-xl">
-              <h3 className="font-display font-bold text-foreground mb-4">
+            <div className="p-6 bg-muted/50 rounded-xl">
+              <h4 className="font-display font-bold text-foreground mb-4">
                 MVP scope: Java island only
-              </h3>
+              </h4>
               <p className="text-muted-foreground mb-4">
                 Limited geographic rollout to Java where GoTo's logistics density was highest. This ensured we could actually deliver on "fast, reliable shipping" promises. Better to prove model in controlled environment than over-promise nationally and fail.
               </p>
@@ -292,11 +292,10 @@ export default function CaseStudyGotoPlus() {
               </p>
             </div>
 
-            {/* Behavioral Design */}
             <div className="p-6 bg-muted/50 rounded-xl">
-              <h3 className="font-display font-bold text-foreground mb-4">
+              <h4 className="font-display font-bold text-foreground mb-4">
                 Behavioral design: Make subscription invisible after signup
-              </h3>
+              </h4>
               <p className="text-muted-foreground">
                 Once subscribed, the product just worked. Free shipping applied automatically. Exclusive deals surfaced in search. Partner benefits appeared when relevant.
               </p>
