@@ -14,6 +14,7 @@ import workSwing2 from "@/assets/work-swing-2.png";
 import workSwing3 from "@/assets/work-swing-3.png";
 import workArsitag from "@/assets/work-arsitag.png";
 import workCareerProgression from "@/assets/work-career-progression.png";
+import businessImpactPlaceholder from "/business-impact-placeholder.svg";
 
 interface WorkItem {
   image: string;
@@ -119,6 +120,66 @@ const works: WorkItem[] = [
     popupImages: [workCareerProgression],
     longDescription:
       '**Professional Trajectory**\n\n2025 (ongoing) - Head of Product, Lion Parcel Customer Apps\nManaging 100K+ MAU across customer-facing channels, driving 20% YoY revenue growth\n\n2024 - Product Manager, ByteDance SEA (E-Commerce Lead)\nLed buyer experience for ~20M daily visitors across Tokopedia and TikTok Shop integration\n\n2023 - Senior Product Manager (Acting Lead), Tokopedia\nPromoted to leadership role managing PDP and restriction engine products\n\n2021-2023 - Product Manager I/II, Tokopedia\nAccepted into Tokopedia Product Acceleration Program, launched GoTo PLUS subscription\n\n2020-2021 - Chief Business Development Officer, Machine Vision Indonesia\nPromoted from Head of Digital Transformation, scaled team 10→25 employees, 3x revenue growth\n\n**Education**\n\nMSc Future Power Networks, Imperial College London - 2020\nLPDP Master\'s Scholarship (Ministry of Finance full-ride) - Merit degree\n\nBEng Electrical Engineering, Institut Teknologi Sepuluh Nopember - 2018\nGPA 3.39/4.00\n\n**Recognition & Achievements**\n• Consulting Leadership Program - McKinsey & Company (2024)\n• Top Performers Award - ByteDance SEA Product (2024)\n• Tokopedia Ignite Future Leaders (2023)\n• Employee Award "Growth Mindset" - Tokopedia (2022, 2023)\n• Generasi Gigih Instructor - GoTo Foundation (2022)\n• Professional Scrum Product Owner I (PSPO I) - Scrum.org (2023)\n• Global Business Skills - GoAccelerate GBS (2023)',
+  },
+  {
+    image: businessImpactPlaceholder,
+    title: "Business Impact Across 7+ Years",
+    description: "Every product decision backed by measurable business outcomes—conversion, revenue, and retention",
+    popupImages: [businessImpactPlaceholder],
+    longDescription:
+      `Every product decision backed by measurable business outcomes—conversion, revenue, and retention.
+
+**Growth & Revenue**
+• +5.95% platform GMV lift (Tokopedia promotional optimization - ~20M daily visitors)
+• +20% YoY revenue growth (Lion Parcel customer apps - 100K+ MAU)
+• +13% power user expansion (Lion Parcel retention programs)
+• 4% monthly recurring revenue (GoTo PLUS subscription launch)
+• +13% MRR from seller promotional marketplace
+• +6% platform commission through merchant tiering optimization
+• +0.8% revenue boost from cross-service monetization
+• 3x revenue growth (Machine Vision, team scale 10→25 employees)
+
+**Conversion & Engagement**
+• +15% paid orders (AR virtual try-on for cosmetics)
+• +8% order creation (Flash Payment on PDP)
+• +14% add-to-cart rate (automated product storytelling)
+• +12% CTR (recommendation entry point optimization)
+• +7% Shop GMV (context-aware shop page redesign)
+• +3% add-to-cart conversion (shop credibility features)
+• 16-33% friction reduction (Lion Parcel UX optimization)
+• +20% engagement (AR try-on feature)
+• +15% variant interaction (PDP redesign)
+
+**Product Launches (0-1)**
+• 300+ monthly orders, 98% ops performance (Kulioner, first same-day inter-island food delivery)
+• 200K subscribers (GoTo PLUS, Indonesia's first e-commerce subscription)
+• 100K→300K orders/month scaled (informal commerce via WhatsApp automation)
+• +30% daily subscriber growth (PLUS launch phase)
+• 7% MRR growth (GoTo PLUS founding contribution)
+
+**Operational Excellence**
+• Reduced tariff check time 24s→16s (-33% friction)
+• Reduced drop-off flow 18s→15s (-16% friction)
+• +30% development velocity increase (impact-driven prioritization)
+• 6% operational efficiency gains (OEE monitoring for manufacturing)
+• 98% operational performance maintained at launch (Kulioner)
+
+**Enterprise & B2B**
+• 5+ enterprise deals closed, $100K total project value
+• $50K AR/VR training project (PT Petrokimia Gresik)
+• $30K multi-facility expansion deals (OEE monitoring)
+
+**Team & Organizational Impact**
+• Managed 2-7 direct report PMs across levels
+• Coordinated 30-50 person tribes (engineering, data, design, operations)
+• Led products serving 20M+ daily platform visitors
+• 5% of customers generating 40% of revenue (power user identification)
+
+**Geographic Reach**
+• Products deployed across Southeast Asia (Indonesia, Malaysia, Singapore, Thailand, Vietnam, Philippines)
+• Platform reach: 20M+ daily visitors (ByteDance/Tokopedia)
+• Active user base: 100K+ MAU direct ownership (Lion Parcel)
+• Subscription base: 200K+ paying users (GoTo PLUS)`,
   },
 ];
 
