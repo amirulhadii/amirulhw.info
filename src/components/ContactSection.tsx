@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Linkedin, FileDown, Mail } from "lucide-react";
+import { ArrowRight, Linkedin, MessageCircle, Mail } from "lucide-react";
 import { resumeData } from "@/data/resumeData";
 
 export function ContactSection() {
@@ -45,11 +45,13 @@ export function ContactSection() {
             </a>
 
             <a
-              href="#"
+              href="https://wa.me/6287852298982?text=Hi%20Amirul%2C%20could%20you%20share%20your%20full%20resume%3F"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group inline-flex items-center gap-2 px-6 py-3 bg-primary-foreground/10 text-primary-foreground rounded-full font-medium hover:bg-primary-foreground/20 transition-colors"
             >
-              <FileDown className="w-4 h-4" />
-              <span>Download resume (PDF)</span>
+              <MessageCircle className="w-4 h-4" />
+              <span>Request Resume (via WhatsApp)</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
           </div>
