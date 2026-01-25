@@ -5,6 +5,8 @@ import { X } from "lucide-react";
 import workSpeaker1 from "@/assets/work-speaker-1.png";
 import workSpeaker2 from "@/assets/work-speaker-2.png";
 import workLionParcel from "@/assets/work-lionparcel.png";
+import workBeautyAr1 from "@/assets/work-beauty-ar-1.png";
+import workBeautyAr2 from "@/assets/work-beauty-ar-2.png";
 
 interface WorkItem {
   image: string;
@@ -28,6 +30,13 @@ const works: WorkItem[] = [
     description: "Reduced conversion friction by 16-33% through systematic UX optimization and A/B testing",
     popupImages: [workLionParcel],
     longDescription: "Led complete UX overhaul for Lion Parcel's customer apps serving 100K+ MAU and 150K+ monthly shipments.\n\nResults:\n• Cut tariff check time from 24s to 16s (-33% friction)\n• Reduced drop-off flow from 18s to 15s (-16% friction)"
+  },
+  {
+    image: workBeautyAr1,
+    title: "Indonesia's First Beauty AR for E-Commerce",
+    description: "Launched AR virtual try-on during COVID-19, driving +15% paid orders for the featured products",
+    popupImages: [workBeautyAr1, workBeautyAr2],
+    longDescription: "Pioneered Tokopedia's first augmented reality feature for cosmetics during pandemic lockdowns when physical try-on wasn't possible. Led product strategy, UX design, and cross-functional launch (engineering, beauty brands, marketing).\n\nRead more: https://www.tokopedia.com/blog/tokopedia-hadirkan-fitur-augmented-reality-ar-masyarakat-bisa-mencoba-makeup-secara-virtual-rls/\n\nImpact:\n• +15% paid orders in featured cosmetics\n• +20% user engagement (session time, product interactions)\n• Restored category sales to pre-pandemic levels\n• Reduced return rates by helping customers make confident purchase decisions\n\nTechnical implementation integrated real-time face tracking, color matching algorithms, and seamless camera-to-cart. Proved AR could drive measurable commerce outcomes, not just gimmick engagement."
   },
 ];
 
