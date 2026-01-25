@@ -136,6 +136,7 @@ const works: WorkItem[] = [
 • Reduced tariff check time 24s→16s (-33% friction)
 • Reduced drop-off flow 18s→15s (-16% friction)
 • 300+ monthly orders, 98% ops performance (Kulioner, first same-day inter-island food delivery)
+• 100K→300K orders/month scaled (informal commerce via WhatsApp automation)
 
 **ByteDance**
 • Led products serving 20M+ daily platform visitors
@@ -157,7 +158,6 @@ const works: WorkItem[] = [
 • 200K subscribers (GoTo PLUS, Indonesia's first e-commerce subscription)
 • +30% daily subscriber growth (PLUS launch phase)
 • 4% MRR growth (GoTo PLUS founding contribution)
-• 100K→300K orders/month scaled (informal commerce via WhatsApp automation)
 
 **Machine Vision**
 • 3x revenue growth (team scale 10→25 employees)
