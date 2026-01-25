@@ -8,6 +8,7 @@ import workLionParcel from "@/assets/work-lionparcel.png";
 import workBeautyAr1 from "@/assets/work-beauty-ar-1.png";
 import workBeautyAr2 from "@/assets/work-beauty-ar-2.png";
 import workTiktokTokopedia from "@/assets/work-tiktok-tokopedia.png";
+import workVrTraining from "@/assets/work-vr-training.png";
 
 interface WorkItem {
   image: string;
@@ -72,6 +73,14 @@ const works: WorkItem[] = [
     popupImages: [workTiktokTokopedia],
     longDescription: "Led buyer experience integration for SEA's largest marketplace merger, managing 70% GMV share.\n\nManaged critical integration workstreams for ByteDance's acquisition of Tokopedia, ensuring seamless buyer experience across merged platforms.\n\nLed Product Detail Page, Reviews, and Shop Page integration serving ~20M daily visitors.\n\nKey launches:\n• **Review system integration**: Unified review display across Tokopedia and TikTok Shop, maintaining trust signals during platform merge\n• **Post-ATC basket building**: Optimized add-to-cart journey with cross-platform recommendations, driving +0.5% GMV uplift\n• **Shop page redesign**: Context-aware merchant pages with complementary algorithms based on user journey, achieving +7% Shop GMV\n\nCoordinated PMs and Engineering/Design/Data leaders across Indonesia, Singapore, Thailand, Vietnam, Philippines markets. Delivered integration milestones while maintaining platform stability and growth metrics.",
     readMoreLink: "https://www.thejakartapost.com/business/2023/12/11/tiktok-marks-e-commerce-return-with-1-5-billion-deal-to-acquire-tokopedia.html"
+  },
+  {
+    image: workVrTraining,
+    title: "AR/VR Training System for Fertilizer Manufacturing",
+    description: "Built Indonesia's first AR/VR learning management system for industrial safety training",
+    popupImages: [workVrTraining],
+    longDescription: "Built Indonesia's first AR/VR learning management system for industrial safety training.\n\nPartnered with PT Petrokimia Gresik (state-owned fertilizer manufacturer) to develop immersive training platform for hazardous environment procedures.\n\nThe system enabled workers to practice emergency procedures, equipment operation, and safety protocols in virtual environments before entering actual production facilities. Initial contract established scalable training standard for Indonesia's fertilizer industry while reducing training costs and improving safety protocol retention.\n\nThis project became the anchor portfolio that secured Oculus Facebook partnership as Asia-Pacific Independent Software Vendor, positioned the company as ASEAN Global Startup Awards 2020 Finalist, and obtained government grant supporting Indonesia's Ministry of Industry 4.0 roadmap. Proved VR/AR could deliver measurable ROI in industrial training, not just entertainment applications.",
+    readMoreLink: "https://hcdev.petrokimia-gresik.com/learningexperience/vr.html"
   },
 ];
 
