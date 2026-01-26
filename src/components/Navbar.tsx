@@ -75,39 +75,37 @@ export function Navbar() {
         </ul>
 
         {/* Mobile Hamburger Menu */}
-        <div className="sm:hidden">
-          <Sheet open={isOpen} onOpenChange={setIsOpen}>
-            <SheetTrigger asChild>
-              <button
-                className="p-2 rounded-full text-foreground hover:bg-muted transition-colors"
-                aria-label="Open menu"
-              >
-                <Menu size={20} />
-              </button>
-            </SheetTrigger>
-            <SheetContent side="top" className="pt-16 bg-card border-border">
-              <nav className="flex flex-col gap-2">
-                {navItems.map((item) => {
-                  const isActive = activeSection === item.href.replace("#", "");
-                  return (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      onClick={(e) => handleClick(e, item.href)}
-                      className={`px-4 py-3 rounded-lg text-base font-medium transition-all duration-300
-                        ${isActive 
-                          ? "bg-foreground text-background" 
-                          : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                        }`}
-                    >
-                      {item.label}
-                    </a>
-                  );
-                })}
-              </nav>
-            </SheetContent>
-          </Sheet>
-        </div>
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
+          <SheetTrigger asChild>
+            <button
+              className="sm:hidden p-2 rounded-full text-foreground hover:bg-muted transition-colors"
+              aria-label="Open menu"
+            >
+              <Menu size={20} />
+            </button>
+          </SheetTrigger>
+          <SheetContent side="top" className="pt-16 bg-card border-border">
+            <nav className="flex flex-col gap-2">
+              {navItems.map((item) => {
+                const isActive = activeSection === item.href.replace("#", "");
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    onClick={(e) => handleClick(e, item.href)}
+                    className={`px-4 py-3 rounded-lg text-base font-medium transition-all duration-300
+                      ${isActive 
+                        ? "bg-foreground text-background" 
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                      }`}
+                  >
+                    {item.label}
+                  </a>
+                );
+              })}
+            </nav>
+          </SheetContent>
+        </Sheet>
       </div>
     </motion.nav>
   );
