@@ -45,40 +45,49 @@ export function Navbar() {
   };
 
   return (
-    <motion.nav
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, delay: 0.1 }}
-      className="fixed top-6 left-1/2 -translate-x-1/2 z-50"
-    >
-      <div className="bg-card/95 backdrop-blur-md rounded-full px-1.5 py-1.5 shadow-elevated border border-border">
-        {/* Desktop Navigation */}
-        <ul className="hidden sm:flex items-center gap-0.5">
-          {navItems.map((item) => {
-            const isActive = activeSection === item.href.replace("#", "");
-            return (
-              <li key={item.label}>
-                <a
-                  href={item.href}
-                  onClick={(e) => handleClick(e, item.href)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 inline-block
-                    ${isActive 
-                      ? "bg-foreground text-background" 
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                    }`}
-                >
-                  {item.label}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
+    <>
+      {/* Desktop Navigation - Centered */}
+      <motion.nav
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="fixed top-6 left-1/2 -translate-x-1/2 z-50 hidden sm:block"
+      >
+        <div className="bg-card/95 backdrop-blur-md rounded-full px-1.5 py-1.5 shadow-elevated border border-border">
+          <ul className="flex items-center gap-0.5">
+            {navItems.map((item) => {
+              const isActive = activeSection === item.href.replace("#", "");
+              return (
+                <li key={item.label}>
+                  <a
+                    href={item.href}
+                    onClick={(e) => handleClick(e, item.href)}
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 inline-block
+                      ${isActive 
+                        ? "bg-foreground text-background" 
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                      }`}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </motion.nav>
 
-        {/* Mobile Hamburger Menu */}
+      {/* Mobile Navigation - Top Right */}
+      <motion.div
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="fixed top-6 right-6 z-50 sm:hidden"
+      >
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger asChild>
             <button
-              className="sm:hidden p-2 rounded-full text-foreground hover:bg-muted transition-colors"
+              className="bg-card/95 backdrop-blur-md rounded-full p-3 shadow-elevated border border-border text-foreground hover:bg-muted transition-colors"
               aria-label="Open menu"
             >
               <Menu size={20} />
@@ -106,7 +115,7 @@ export function Navbar() {
             </nav>
           </SheetContent>
         </Sheet>
-      </div>
-    </motion.nav>
+      </motion.div>
+    </>
   );
 }
