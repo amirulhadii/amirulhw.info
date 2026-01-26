@@ -2,10 +2,10 @@ import { motion } from "framer-motion";
 import { useState, useEffect, useCallback } from "react";
 
 const navItems = [
-  { label: "Q&A", href: "#hero" },
-  { label: "Products That Moved Metrics", href: "#portfolio" },
-  { label: "Track Records", href: "#records" },
-  { label: "Peer Reviews", href: "#testimonials" },
+  { label: "Ask", href: "#hero" },
+  { label: "Work", href: "#portfolio" },
+  { label: "Impact", href: "#records" },
+  { label: "Reviews", href: "#testimonials" },
 ];
 
 export function Navbar() {
