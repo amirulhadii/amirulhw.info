@@ -77,7 +77,7 @@ export function HeroSection() {
             </div>
 
             {/* Description Text */}
-            <p className="text-sm md:text-base text-right text-muted-foreground max-w-xs leading-relaxed">
+            <p className="text-sm md:text-base text-right text-muted-foreground max-w-xs leading-relaxed pr-4">
               Hi, I'm <span className="text-foreground font-medium">Amirul</span>. I ship 0-1 products at scale—from
               concept to millions of users and millions in revenue. 7+ years across marketplaces, logistics, and
               consumer tech. Based in Indonesia with availability to relocate abroad.
