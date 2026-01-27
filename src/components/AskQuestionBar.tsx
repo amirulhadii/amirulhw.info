@@ -226,7 +226,7 @@ export function AskQuestionBar({ onClose }: AskQuestionBarProps) {
         }
       }
     }
-    return `Great question! I don't have that specific detail, but ${data.personal.name} would be happy to discuss it directly.\n\n📧 Email: ${data.personal.email}\n📱 Phone: ${data.personal.phone}\n\nOr feel free to ask me about:\n• Work experience at ByteDance, Tokopedia, Lion Parcel\n• Skills, education, or certifications\n• Availability, relocation, or salary expectations`;
+    return `I don't have that specific detail, but ${data.personal.name} would be happy to discuss it directly.\n\n📧 Email: ${data.personal.email}\n📱 Phone: ${data.personal.phone}\n\nOr feel free to ask me about:\n• Work experience at ByteDance, Tokopedia, Lion Parcel\n• Skills, education, or certifications\n• Availability, relocation, or salary expectations`;
   };
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
