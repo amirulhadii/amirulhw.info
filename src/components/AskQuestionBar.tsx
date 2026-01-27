@@ -1,25 +1,42 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Sparkles, X, Loader2 } from "lucide-react";
 import { resumeData } from "@/data/resumeData";
 import { useQAResponses } from "@/hooks/useQAResponses";
 import { supabase } from "@/integrations/supabase/client";
+import { toast } from "@/hooks/use-toast";
 
 interface AskQuestionBarProps {
   onClose?: () => void;
 }
 
-// Log question to database with IP address
+const MAX_QUESTION_LENGTH = 500;
+const SUBMIT_COOLDOWN_MS = 5000; // 5 seconds between submissions
+
+// Simple hash function for anonymizing IP addresses (client-side)
+async function hashIP(ip: string): Promise<string> {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(ip + "portfolio-salt-2026");
+  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  // Return first 16 hex characters for anonymized storage
+  return hashArray.slice(0, 8).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+// Log question to database with hashed IP address
 async function logQuestion(questionText: string) {
   try {
     // Get IP address from a public API
     const ipResponse = await fetch("https://api.ipify.org?format=json");
     const ipData = await ipResponse.json();
     const ipAddress = ipData.ip || null;
+    
+    // Hash the IP for privacy protection
+    const hashedIP = ipAddress ? await hashIP(ipAddress) : null;
 
     await supabase.from("question_logs").insert({
       question: questionText,
-      ip_address: ipAddress,
+      ip_address: hashedIP,
     });
   } catch (error) {
     console.error("Failed to log question:", error);
@@ -30,17 +47,43 @@ export function AskQuestionBar({ onClose }: AskQuestionBarProps) {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState<string | null>(null);
   const [isSearching, setIsSearching] = useState(false);
+  const lastSubmitTimeRef = useRef<number>(0);
   const { findAnswer, isLoading: isLoadingResponses } = useQAResponses();
   const data = resumeData;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!question.trim()) return;
+    const trimmedQuestion = question.trim();
+    
+    if (!trimmedQuestion) return;
+    
+    // Length validation
+    if (trimmedQuestion.length > MAX_QUESTION_LENGTH) {
+      toast({
+        title: "Question too long",
+        description: `Please keep your question under ${MAX_QUESTION_LENGTH} characters.`,
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    // Rate limiting
+    const now = Date.now();
+    if (now - lastSubmitTimeRef.current < SUBMIT_COOLDOWN_MS) {
+      toast({
+        title: "Please wait",
+        description: "You can submit another question in a few seconds.",
+        variant: "destructive",
+      });
+      return;
+    }
+    lastSubmitTimeRef.current = now;
+    
     setIsSearching(true);
     setAnswer(null);
 
     // Log the question to database (fire and forget)
-    logQuestion(question.trim());
+    logQuestion(trimmedQuestion);
 
     // Simulate processing time for better UX
     setTimeout(() => {
