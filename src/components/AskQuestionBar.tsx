@@ -226,7 +226,7 @@ export function AskQuestionBar({ onClose }: AskQuestionBarProps) {
         }
       }
     }
-    return `I couldn't find specific information about that. Try asking about:\n• Work experience & career history\n• Education background\n• Skills & expertise\n• Specific companies (ByteDance, Tokopedia, Lion Parcel)\n• Achievements & certifications\n• Contact information`;
+    return `Great question! I don't have that specific detail, but ${data.personal.name} would be happy to discuss it directly.\n\n📧 Email: ${data.personal.email}\n📱 Phone: ${data.personal.phone}\n\nOr feel free to ask me about:\n• Work experience at ByteDance, Tokopedia, Lion Parcel\n• Skills, education, or certifications\n• Availability, relocation, or salary expectations`;
   };
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
