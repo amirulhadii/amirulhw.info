@@ -28,10 +28,10 @@ export function HeroSection() {
             }}
             className="text-left"
           >
-            <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[7rem] xl:text-[8rem] font-display font-bold leading-[0.9] tracking-tight pl-4">
-              <span className="text-foreground">Ships Products.</span>
+            <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[7rem] xl:text-[8rem] font-display font-bold leading-[0.9] tracking-tight">
+              <span className="text-foreground">Ships Products</span>
               <br />
-              <span className="text-foreground">Drives Growth.</span>
+              <span className="text-foreground">Drives Growth</span>
             </h1>
 
             {/* Ask Question Bar */}
@@ -77,7 +77,7 @@ export function HeroSection() {
             </div>
 
             {/* Description Text */}
-            <p className="text-sm md:text-base text-right text-muted-foreground max-w-xs leading-relaxed pr-4">
+            <p className="text-sm md:text-base text-right text-muted-foreground max-w-xs leading-relaxed">
               Hi, I'm <span className="text-foreground font-medium">Amirul</span>. I ship 0-1 products at scale—from
               concept to millions of users and millions in revenue. 7+ years across marketplaces, logistics, and
               consumer tech. Based in Indonesia with availability to relocate abroad.
