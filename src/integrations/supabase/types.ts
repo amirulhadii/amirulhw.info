@@ -41,6 +41,27 @@ export type Database = {
         }
         Relationships: []
       }
+      question_logs: {
+        Row: {
+          created_at: string
+          id: string
+          ip_address: string | null
+          question: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          ip_address?: string | null
+          question: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          ip_address?: string | null
+          question?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
