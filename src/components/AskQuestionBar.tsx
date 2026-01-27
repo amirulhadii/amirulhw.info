@@ -11,35 +11,28 @@ interface AskQuestionBarProps {
 }
 
 const MAX_QUESTION_LENGTH = 500;
-const SUBMIT_COOLDOWN_MS = 5000; // 5 seconds between submissions
+const SUBMIT_COOLDOWN_MS = 5000; // 5 seconds between submissions (client-side UX)
 
-// Simple hash function for anonymizing IP addresses (client-side)
-async function hashIP(ip: string): Promise<string> {
-  const encoder = new TextEncoder();
-  const data = encoder.encode(ip + "portfolio-salt-2026");
-  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  // Return first 16 hex characters for anonymized storage
-  return hashArray.slice(0, 8).map(b => b.toString(16).padStart(2, "0")).join("");
-}
-
-// Log question to database with hashed IP address
-async function logQuestion(questionText: string) {
+// Log question via Edge Function (server-side validation & rate limiting)
+async function logQuestion(questionText: string): Promise<{ success: boolean; error?: string }> {
   try {
-    // Get IP address from a public API
-    const ipResponse = await fetch("https://api.ipify.org?format=json");
-    const ipData = await ipResponse.json();
-    const ipAddress = ipData.ip || null;
-    
-    // Hash the IP for privacy protection
-    const hashedIP = ipAddress ? await hashIP(ipAddress) : null;
-
-    await supabase.from("question_logs").insert({
-      question: questionText,
-      ip_address: hashedIP,
+    const { data, error } = await supabase.functions.invoke('log-question', {
+      body: { question: questionText }
     });
+    
+    if (error) {
+      console.error("Failed to log question:", error);
+      return { success: false, error: error.message };
+    }
+    
+    if (data?.error) {
+      return { success: false, error: data.error };
+    }
+    
+    return { success: true };
   } catch (error) {
     console.error("Failed to log question:", error);
+    return { success: false, error: "Network error" };
   }
 }
 
@@ -51,13 +44,13 @@ export function AskQuestionBar({ onClose }: AskQuestionBarProps) {
   const { findAnswer, isLoading: isLoadingResponses } = useQAResponses();
   const data = resumeData;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const trimmedQuestion = question.trim();
     
     if (!trimmedQuestion) return;
     
-    // Length validation
+    // Client-side length validation for UX
     if (trimmedQuestion.length > MAX_QUESTION_LENGTH) {
       toast({
         title: "Question too long",
@@ -67,7 +60,7 @@ export function AskQuestionBar({ onClose }: AskQuestionBarProps) {
       return;
     }
     
-    // Rate limiting
+    // Client-side rate limiting for UX (server enforces the real limit)
     const now = Date.now();
     if (now - lastSubmitTimeRef.current < SUBMIT_COOLDOWN_MS) {
       toast({
@@ -82,22 +75,30 @@ export function AskQuestionBar({ onClose }: AskQuestionBarProps) {
     setIsSearching(true);
     setAnswer(null);
 
-    // Log the question to database (fire and forget)
-    logQuestion(trimmedQuestion);
-
-    // Simulate processing time for better UX
-    setTimeout(() => {
-      const result = findAnswer(question);
-      if (result) {
-        setAnswer(result);
-      } else {
-        // Fallback response
-        setAnswer(
-          `I don't have that specific detail, but ${data.personal.name} would be happy to discuss it directly.\n\n📧 Email: ${data.personal.email}\n📱 Phone: ${data.personal.phone}\n\nOr feel free to ask me about:\n• Work experience at ByteDance, Tokopedia, Lion Parcel\n• Skills, education, or certifications\n• Availability, relocation, or salary expectations`
-        );
-      }
+    // Log the question via Edge Function (server-side validation & rate limiting)
+    const logResult = await logQuestion(trimmedQuestion);
+    
+    if (!logResult.success && logResult.error?.includes('Rate limit')) {
+      toast({
+        title: "Too many questions",
+        description: "Please wait a while before asking more questions.",
+        variant: "destructive",
+      });
       setIsSearching(false);
-    }, 600);
+      return;
+    }
+
+    // Process the question locally
+    const result = findAnswer(trimmedQuestion);
+    if (result) {
+      setAnswer(result);
+    } else {
+      // Fallback response
+      setAnswer(
+        `I don't have that specific detail, but ${data.personal.name} would be happy to discuss it directly.\n\n📧 Email: ${data.personal.email}\n📱 Phone: ${data.personal.phone}\n\nOr feel free to ask me about:\n• Work experience at ByteDance, Tokopedia, Lion Parcel\n• Skills, education, or certifications\n• Availability, relocation, or salary expectations`
+      );
+    }
+    setIsSearching(false);
   };
 
   const clearAnswer = () => {
