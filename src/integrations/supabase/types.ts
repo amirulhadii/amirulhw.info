@@ -62,12 +62,37 @@ export type Database = {
         }
         Relationships: []
       }
+      rate_limits: {
+        Row: {
+          ip_hash: string
+          question_count: number
+          window_start: string
+        }
+        Insert: {
+          ip_hash: string
+          question_count?: number
+          window_start?: string
+        }
+        Update: {
+          ip_hash?: string
+          question_count?: number
+          window_start?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      check_and_update_rate_limit: {
+        Args: {
+          p_ip_hash: string
+          p_max_requests?: number
+          p_window_minutes?: number
+        }
+        Returns: boolean
+      }
     }
     Enums: {
       [_ in never]: never
