@@ -28,7 +28,7 @@ export function HeroSection() {
             }}
             className="text-left"
           >
-            <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[7rem] xl:text-[8rem] font-display font-bold leading-[0.9] tracking-tight">
+            <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[7rem] xl:text-[8rem] font-display font-bold leading-[0.9] tracking-tight pl-4">
               <span className="text-foreground">Ships Products.</span>
               <br />
               <span className="text-foreground">Drives Growth.</span>
