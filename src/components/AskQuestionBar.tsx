@@ -3,9 +3,27 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Search, Sparkles, X, Loader2 } from "lucide-react";
 import { resumeData } from "@/data/resumeData";
 import { useQAResponses } from "@/hooks/useQAResponses";
+import { supabase } from "@/integrations/supabase/client";
 
 interface AskQuestionBarProps {
   onClose?: () => void;
+}
+
+// Log question to database with IP address
+async function logQuestion(questionText: string) {
+  try {
+    // Get IP address from a public API
+    const ipResponse = await fetch("https://api.ipify.org?format=json");
+    const ipData = await ipResponse.json();
+    const ipAddress = ipData.ip || null;
+
+    await supabase.from("question_logs").insert({
+      question: questionText,
+      ip_address: ipAddress,
+    });
+  } catch (error) {
+    console.error("Failed to log question:", error);
+  }
 }
 
 export function AskQuestionBar({ onClose }: AskQuestionBarProps) {
@@ -20,6 +38,9 @@ export function AskQuestionBar({ onClose }: AskQuestionBarProps) {
     if (!question.trim()) return;
     setIsSearching(true);
     setAnswer(null);
+
+    // Log the question to database (fire and forget)
+    logQuestion(question.trim());
 
     // Simulate processing time for better UX
     setTimeout(() => {
