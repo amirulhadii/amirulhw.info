@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { useRef } from "react";
 import kulionerImg from "@/assets/portfolio-kulioner.png";
 import tokopediaImg from "@/assets/portfolio-tokopedia.png";
 import gotoplusImg from "@/assets/portfolio-gotoplus.png";
@@ -41,6 +42,32 @@ const selectedWorks = [
   },
 ];
 
+function ParallaxImage({ src, alt, index }: { src: string; alt: string; index: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1.1, 1, 1.1]);
+
+  return (
+    <div
+      ref={ref}
+      className={`overflow-hidden rounded-2xl bg-muted ${index % 2 === 1 ? "md:col-start-2" : ""}`}
+    >
+      <motion.div style={{ y, scale }} className="w-full h-full">
+        <img
+          src={src}
+          alt={alt}
+          className="w-full h-auto object-cover aspect-[16/10]"
+        />
+      </motion.div>
+    </div>
+  );
+}
+
 export function SelectedWorkSection() {
   return (
     <section id="portfolio" className="py-20 md:py-32">
@@ -70,10 +97,8 @@ export function SelectedWorkSection() {
                   index % 2 === 1 ? "md:grid-flow-dense" : ""
                 }`}
               >
-                {/* Image */}
-                <div className={`overflow-hidden rounded-2xl bg-muted ${index % 2 === 1 ? "md:col-start-2" : ""}`}>
-                  <img src={work.image} alt={work.title} className="w-full h-auto object-cover aspect-[16/10]" />
-                </div>
+                {/* Image with Parallax */}
+                <ParallaxImage src={work.image} alt={work.title} index={index} />
 
                 {/* Content */}
                 <div className={`${index % 2 === 1 ? "md:col-start-1 md:row-start-1" : ""}`}>
