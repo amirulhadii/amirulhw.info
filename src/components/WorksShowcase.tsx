@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { X } from "lucide-react";
 import workSpeaker1 from "@/assets/work-speaker-1.png";
 import workSpeaker2 from "@/assets/work-speaker-2.png";
 import workLionParcel from "@/assets/work-lionparcel.png";
@@ -23,6 +22,14 @@ interface WorkItem {
   popupImages: string[];
   longDescription: string;
   readMoreLink?: string;
+}
+
+interface BubbleState {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  size: number;
 }
 
 // Helper to render text with clickable links
@@ -173,17 +180,148 @@ const works: WorkItem[] = [
   },
 ];
 
-// Split into 2 rows dynamically
-const midpoint = Math.ceil(works.length / 2);
-const rows = [works.slice(0, midpoint), works.slice(midpoint)].filter((row) => row.length > 0);
+// Generate random initial positions
+const generateInitialBubbles = (count: number, containerWidth: number, containerHeight: number): BubbleState[] => {
+  const bubbles: BubbleState[] = [];
+  const sizes = [80, 100, 120, 140, 100, 120, 80, 100, 120]; // Varied sizes
+  
+  for (let i = 0; i < count; i++) {
+    const size = sizes[i % sizes.length];
+    const padding = size / 2;
+    bubbles.push({
+      x: padding + Math.random() * (containerWidth - size - padding * 2),
+      y: padding + Math.random() * (containerHeight - size - padding * 2),
+      vx: (Math.random() - 0.5) * 2,
+      vy: (Math.random() - 0.5) * 2,
+      size,
+    });
+  }
+  return bubbles;
+};
 
 export function WorksShowcase() {
   const [selectedWork, setSelectedWork] = useState<WorkItem | null>(null);
-  const isPaused = selectedWork !== null;
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [bubbles, setBubbles] = useState<BubbleState[]>([]);
+  const [draggingIndex, setDraggingIndex] = useState<number | null>(null);
+  const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
+  const animationRef = useRef<number>();
+  const dragStart = useRef<{ x: number; y: number; bubbleX: number; bubbleY: number } | null>(null);
+
+  // Initialize bubbles on mount and resize
+  useEffect(() => {
+    const updateSize = () => {
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        setContainerSize({ width: rect.width, height: rect.height });
+        setBubbles(generateInitialBubbles(works.length, rect.width, rect.height));
+      }
+    };
+
+    updateSize();
+    window.addEventListener("resize", updateSize);
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
+
+  // Physics animation loop
+  useEffect(() => {
+    if (containerSize.width === 0 || containerSize.height === 0) return;
+
+    const animate = () => {
+      setBubbles((prev) =>
+        prev.map((bubble, index) => {
+          if (index === draggingIndex) return bubble;
+
+          let { x, y, vx, vy, size } = bubble;
+
+          // Apply velocity
+          x += vx;
+          y += vy;
+
+          // Apply friction
+          vx *= 0.995;
+          vy *= 0.995;
+
+          // Bounce off walls
+          if (x <= 0 || x >= containerSize.width - size) {
+            vx = -vx * 0.8;
+            x = Math.max(0, Math.min(x, containerSize.width - size));
+          }
+          if (y <= 0 || y >= containerSize.height - size) {
+            vy = -vy * 0.8;
+            y = Math.max(0, Math.min(y, containerSize.height - size));
+          }
+
+          return { x, y, vx, vy, size };
+        })
+      );
+
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    animationRef.current = requestAnimationFrame(animate);
+    return () => {
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+    };
+  }, [containerSize, draggingIndex]);
+
+  const handlePointerDown = useCallback((e: React.PointerEvent, index: number) => {
+    e.preventDefault();
+    (e.target as HTMLElement).setPointerCapture(e.pointerId);
+    setDraggingIndex(index);
+    dragStart.current = {
+      x: e.clientX,
+      y: e.clientY,
+      bubbleX: bubbles[index]?.x || 0,
+      bubbleY: bubbles[index]?.y || 0,
+    };
+  }, [bubbles]);
+
+  const handlePointerMove = useCallback((e: React.PointerEvent) => {
+    if (draggingIndex === null || !dragStart.current) return;
+
+    const dx = e.clientX - dragStart.current.x;
+    const dy = e.clientY - dragStart.current.y;
+
+    setBubbles((prev) =>
+      prev.map((bubble, index) => {
+        if (index !== draggingIndex) return bubble;
+        const newX = Math.max(0, Math.min(dragStart.current!.bubbleX + dx, containerSize.width - bubble.size));
+        const newY = Math.max(0, Math.min(dragStart.current!.bubbleY + dy, containerSize.height - bubble.size));
+        return { ...bubble, x: newX, y: newY };
+      })
+    );
+  }, [draggingIndex, containerSize]);
+
+  const handlePointerUp = useCallback((e: React.PointerEvent) => {
+    if (draggingIndex !== null && dragStart.current) {
+      const dx = e.clientX - dragStart.current.x;
+      const dy = e.clientY - dragStart.current.y;
+      
+      // If barely moved, treat as click
+      if (Math.abs(dx) < 5 && Math.abs(dy) < 5) {
+        setSelectedWork(works[draggingIndex]);
+      } else {
+        // Apply release velocity
+        setBubbles((prev) =>
+          prev.map((bubble, index) => {
+            if (index !== draggingIndex) return bubble;
+            return {
+              ...bubble,
+              vx: (e.clientX - dragStart.current!.x) * 0.1,
+              vy: (e.clientY - dragStart.current!.y) * 0.1,
+            };
+          })
+        );
+      }
+    }
+    setDraggingIndex(null);
+    dragStart.current = null;
+  }, [draggingIndex]);
 
   return (
     <section className="py-16 md:py-24 overflow-hidden bg-muted/30">
-      <div className="container mb-12">
+      <div className="container mb-8">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -193,43 +331,54 @@ export function WorksShowcase() {
         >
           Everything I've Built
         </motion.h2>
+        <p className="text-muted-foreground mt-2 text-sm">Click and drag the bubbles to play!</p>
       </div>
 
-      <div className="space-y-6">
-        {rows.map((row, rowIndex) => (
-          <div key={rowIndex} className="relative overflow-hidden">
+      <div
+        ref={containerRef}
+        className="relative mx-auto h-[500px] md:h-[600px] max-w-6xl overflow-hidden rounded-2xl bg-gradient-to-br from-background via-muted/50 to-background border border-border"
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerLeave={handlePointerUp}
+      >
+        {bubbles.map((bubble, index) => (
+          <motion.div
+            key={works[index].title}
+            className="absolute cursor-grab active:cursor-grabbing select-none"
+            style={{
+              left: bubble.x,
+              top: bubble.y,
+              width: bubble.size,
+              height: bubble.size,
+            }}
+            animate={{
+              scale: draggingIndex === index ? 1.1 : 1,
+            }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            onPointerDown={(e) => handlePointerDown(e, index)}
+          >
             <div
-              className={`flex gap-6 ${rowIndex % 2 === 0 ? "animate-marquee-left" : "animate-marquee-right"}`}
-              style={{ animationPlayState: isPaused ? "paused" : "running" }}
+              className="w-full h-full rounded-full overflow-hidden border-4 border-background shadow-lg hover:shadow-xl transition-shadow bg-card"
+              style={{
+                boxShadow: draggingIndex === index 
+                  ? "0 20px 40px rgba(0,0,0,0.3)" 
+                  : "0 8px 24px rgba(0,0,0,0.15)",
+              }}
             >
-              {/* Triple the items for seamless loop */}
-              {[...row, ...row, ...row].map((work, index) => (
-                <motion.div
-                  key={`${work.title}-${index}`}
-                  className="flex-shrink-0 w-64 md:w-80 group cursor-pointer"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.2 }}
-                  onClick={() => setSelectedWork(work)}
-                >
-                  <div className="relative overflow-hidden rounded-xl bg-card border border-border shadow-sm hover:shadow-md transition-shadow">
-                    <div className="aspect-[16/10] overflow-hidden">
-                      <img
-                        src={work.image}
-                        alt={work.title}
-                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-                    <div className="p-4 h-24 flex flex-col">
-                      <h3 className="font-display font-semibold text-foreground text-sm md:text-base line-clamp-1">
-                        {work.title}
-                      </h3>
-                      <p className="text-muted-foreground text-xs md:text-sm line-clamp-2 mt-1">{work.description}</p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
+              <img
+                src={works[index].image}
+                alt={works[index].title}
+                className="w-full h-full object-cover pointer-events-none"
+                draggable={false}
+              />
             </div>
-          </div>
+            {/* Title tooltip on hover */}
+            <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap opacity-0 hover:opacity-100 transition-opacity pointer-events-none">
+              <span className="text-xs bg-foreground text-background px-2 py-1 rounded">
+                {works[index].title.length > 25 ? works[index].title.slice(0, 25) + "..." : works[index].title}
+              </span>
+            </div>
+          </motion.div>
         ))}
       </div>
 
