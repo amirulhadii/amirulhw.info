@@ -204,9 +204,24 @@ export function WorksShowcase() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [bubbles, setBubbles] = useState<BubbleState[]>([]);
   const [draggingIndex, setDraggingIndex] = useState<number | null>(null);
+  const [crackingIndex, setCrackingIndex] = useState<number | null>(null);
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
   const animationRef = useRef<number>();
   const dragStart = useRef<{ x: number; y: number; bubbleX: number; bubbleY: number } | null>(null);
+
+  // Handle opening dialog with optional crack animation
+  const openWithCrack = useCallback((index: number, withCrack: boolean) => {
+    if (withCrack) {
+      setCrackingIndex(index);
+      // Wait for crack animation to complete before opening dialog
+      setTimeout(() => {
+        setCrackingIndex(null);
+        setSelectedWork(works[index]);
+      }, 600);
+    } else {
+      setSelectedWork(works[index]);
+    }
+  }, []);
 
   // Initialize bubbles on mount and resize
   useEffect(() => {
@@ -298,26 +313,17 @@ export function WorksShowcase() {
       const dx = e.clientX - dragStart.current.x;
       const dy = e.clientY - dragStart.current.y;
       
-      // If barely moved, treat as click
+      // If barely moved, treat as click (no crack animation)
       if (Math.abs(dx) < 5 && Math.abs(dy) < 5) {
-        setSelectedWork(works[draggingIndex]);
+        openWithCrack(draggingIndex, false);
       } else {
-        // Apply release velocity
-        setBubbles((prev) =>
-          prev.map((bubble, index) => {
-            if (index !== draggingIndex) return bubble;
-            return {
-              ...bubble,
-              vx: (e.clientX - dragStart.current!.x) * 0.1,
-              vy: (e.clientY - dragStart.current!.y) * 0.1,
-            };
-          })
-        );
+        // Dropped after drag - trigger egg crack animation then open
+        openWithCrack(draggingIndex, true);
       }
     }
     setDraggingIndex(null);
     dragStart.current = null;
-  }, [draggingIndex]);
+  }, [draggingIndex, openWithCrack]);
 
   return (
     <section className="py-16 md:py-24 overflow-hidden bg-muted/30">
@@ -344,7 +350,9 @@ export function WorksShowcase() {
         {bubbles.map((bubble, index) => (
           <motion.div
             key={works[index].title}
-            className="absolute cursor-grab active:cursor-grabbing select-none"
+            className={`absolute cursor-grab active:cursor-grabbing select-none ${
+              crackingIndex === index ? "egg-crack" : ""
+            }`}
             style={{
               left: bubble.x,
               top: bubble.y,
@@ -352,17 +360,21 @@ export function WorksShowcase() {
               height: bubble.size,
             }}
             animate={{
-              scale: draggingIndex === index ? 1.1 : 1,
+              scale: draggingIndex === index ? 1.1 : crackingIndex === index ? 1.2 : 1,
             }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
             onPointerDown={(e) => handlePointerDown(e, index)}
           >
             <div
-              className="w-full h-full rounded-full overflow-hidden border-4 border-background shadow-lg hover:shadow-xl transition-shadow bg-card"
+              className={`w-full h-full rounded-full overflow-hidden border-4 border-background shadow-lg hover:shadow-xl transition-shadow bg-card relative ${
+                crackingIndex === index ? "egg-crack-inner" : ""
+              }`}
               style={{
                 boxShadow: draggingIndex === index 
                   ? "0 20px 40px rgba(0,0,0,0.3)" 
-                  : "0 8px 24px rgba(0,0,0,0.15)",
+                  : crackingIndex === index
+                    ? "0 0 40px rgba(255,200,100,0.6)"
+                    : "0 8px 24px rgba(0,0,0,0.15)",
               }}
             >
               <img
@@ -371,6 +383,37 @@ export function WorksShowcase() {
                 className="w-full h-full object-cover pointer-events-none"
                 draggable={false}
               />
+              {/* Crack overlay */}
+              {crackingIndex === index && (
+                <div className="absolute inset-0 egg-crack-overlay">
+                  <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <path
+                      className="crack-line"
+                      d="M50 0 L45 20 L55 35 L40 50 L60 65 L45 80 L50 100"
+                      stroke="white"
+                      strokeWidth="3"
+                      fill="none"
+                      strokeLinecap="round"
+                    />
+                    <path
+                      className="crack-line delay-1"
+                      d="M30 30 L40 45 L25 60"
+                      stroke="white"
+                      strokeWidth="2"
+                      fill="none"
+                      strokeLinecap="round"
+                    />
+                    <path
+                      className="crack-line delay-2"
+                      d="M70 40 L60 55 L75 70"
+                      stroke="white"
+                      strokeWidth="2"
+                      fill="none"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                </div>
+              )}
             </div>
             {/* Title tooltip on hover */}
             <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap opacity-0 hover:opacity-100 transition-opacity pointer-events-none">
