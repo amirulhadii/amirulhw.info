@@ -295,14 +295,15 @@ export function WorksShowcase() {
   const handlePointerMove = useCallback((e: React.PointerEvent) => {
     if (draggingIndex === null || !dragStart.current) return;
 
-    const dx = e.clientX - dragStart.current.x;
-    const dy = e.clientY - dragStart.current.y;
+    const startRef = dragStart.current;
+    const dx = e.clientX - startRef.x;
+    const dy = e.clientY - startRef.y;
 
     setBubbles((prev) =>
       prev.map((bubble, index) => {
         if (index !== draggingIndex) return bubble;
-        const newX = Math.max(0, Math.min(dragStart.current!.bubbleX + dx, containerSize.width - bubble.size));
-        const newY = Math.max(0, Math.min(dragStart.current!.bubbleY + dy, containerSize.height - bubble.size));
+        const newX = Math.max(0, Math.min(startRef.bubbleX + dx, containerSize.width - bubble.size));
+        const newY = Math.max(0, Math.min(startRef.bubbleY + dy, containerSize.height - bubble.size));
         return { ...bubble, x: newX, y: newY };
       })
     );
