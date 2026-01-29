@@ -33,27 +33,9 @@ interface BubbleState {
 }
 
 // Helper to render text with clickable links
-const renderDescription = (text: string, readMoreLink?: string) => {
-  return (
-    <>
-      <span className="whitespace-pre-line">{text}</span>
-      {readMoreLink && (
-        <>
-          <br />
-          <br />
-          <a
-            href={readMoreLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-primary hover:underline font-medium"
-            onClick={(e) => e.stopPropagation()}
-          >
-            Read more →
-          </a>
-        </>
-      )}
-    </>
-  );
+// Helper to render description text only (without link)
+const renderDescriptionText = (text: string) => {
+  return <span className="whitespace-pre-line">{text}</span>;
 };
 
 const works: WorkItem[] = [
@@ -238,14 +220,16 @@ export function WorksShowcase() {
     return () => window.removeEventListener("resize", updateSize);
   }, []);
 
-  // Physics animation loop
+  // Physics animation loop with auto-movement
   useEffect(() => {
     if (containerSize.width === 0 || containerSize.height === 0) return;
+
+    const MIN_VELOCITY = 0.3; // Minimum speed to keep bubbles moving
 
     const animate = () => {
       setBubbles((prev) =>
         prev.map((bubble, index) => {
-          if (index === draggingIndex) return bubble;
+          if (index === draggingIndex || index === crackingIndex) return bubble;
 
           let { x, y, vx, vy, size } = bubble;
 
@@ -256,6 +240,19 @@ export function WorksShowcase() {
           // Apply friction
           vx *= 0.995;
           vy *= 0.995;
+
+          // Maintain minimum velocity for continuous slow movement
+          const speed = Math.sqrt(vx * vx + vy * vy);
+          if (speed < MIN_VELOCITY && speed > 0) {
+            const scale = MIN_VELOCITY / speed;
+            vx *= scale;
+            vy *= scale;
+          } else if (speed === 0) {
+            // Give random direction if completely stopped
+            const angle = Math.random() * Math.PI * 2;
+            vx = Math.cos(angle) * MIN_VELOCITY;
+            vy = Math.sin(angle) * MIN_VELOCITY;
+          }
 
           // Bounce off walls
           if (x <= 0 || x >= containerSize.width - size) {
@@ -278,7 +275,7 @@ export function WorksShowcase() {
     return () => {
       if (animationRef.current) cancelAnimationFrame(animationRef.current);
     };
-  }, [containerSize, draggingIndex]);
+  }, [containerSize, draggingIndex, crackingIndex]);
 
   const handlePointerDown = useCallback((e: React.PointerEvent, index: number) => {
     e.preventDefault();
@@ -431,6 +428,18 @@ export function WorksShowcase() {
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="text-2xl font-display font-bold">{selectedWork?.title}</DialogTitle>
+            {/* Read more link at top */}
+            {selectedWork?.readMoreLink && (
+              <a
+                href={selectedWork.readMoreLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline font-medium text-sm mt-2 inline-block"
+                onClick={(e) => e.stopPropagation()}
+              >
+                Read more →
+              </a>
+            )}
           </DialogHeader>
 
           {selectedWork && (
@@ -455,7 +464,7 @@ export function WorksShowcase() {
               {/* Long Description */}
               <div className="prose prose-lg max-w-none">
                 <div className="text-muted-foreground leading-relaxed">
-                  {renderDescription(selectedWork.longDescription, selectedWork.readMoreLink)}
+                  {renderDescriptionText(selectedWork.longDescription)}
                 </div>
               </div>
             </div>
