@@ -360,6 +360,10 @@ export function WorksShowcase() {
             animate={{
               scale: draggingIndex === index ? 1.1 : crackingIndex === index ? 1.2 : 1,
             }}
+            whileHover={{
+              scale: draggingIndex === index ? 1.1 : crackingIndex === index ? 1.2 : 1.08,
+              transition: { duration: 0.2 },
+            }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
             onPointerDown={(e) => handlePointerDown(e, index)}
           >
