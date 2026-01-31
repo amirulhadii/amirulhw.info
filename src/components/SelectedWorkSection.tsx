@@ -49,8 +49,8 @@ function ParallaxImage({ src, alt, index }: { src: string; alt: string; index: n
     offset: ["start end", "end start"],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1.1, 1, 1.1]);
+  const y = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1.15, 1, 1.15]);
 
   return (
     <div
@@ -65,6 +65,51 @@ function ParallaxImage({ src, alt, index }: { src: string; alt: string; index: n
         />
       </motion.div>
     </div>
+  );
+}
+
+function ParallaxContent({ work, index }: { work: typeof selectedWorks[0]; index: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+
+  // Content moves slower than images for depth effect
+  const y = useTransform(scrollYProgress, [0, 1], ["30px", "-30px"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.6, 1, 1, 0.6]);
+
+  return (
+    <motion.div
+      ref={ref}
+      style={{ y, opacity }}
+      className={`${index % 2 === 1 ? "md:col-start-1 md:row-start-1" : ""}`}
+    >
+      <div className="mb-4">
+        <span className="text-4xl md:text-5xl font-display font-bold text-muted-foreground/30">
+          {work.number}
+        </span>
+        <div className="w-12 h-0.5 bg-foreground mt-2" />
+      </div>
+
+      <h3 className="text-2xl md:text-3xl font-display font-bold text-foreground mb-6">{work.title}</h3>
+
+      <div className="space-y-1 mb-8">
+        {work.metrics.map((metric, i) => (
+          <p key={i} className="text-muted-foreground">
+            {metric}
+          </p>
+        ))}
+      </div>
+
+      <a
+        href={work.caseStudyLink}
+        className="inline-flex items-center gap-2 text-foreground font-medium hover:text-accent transition-colors group"
+      >
+        <span>View case study</span>
+        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+      </a>
+    </motion.div>
   );
 }
 
@@ -100,33 +145,8 @@ export function SelectedWorkSection() {
                 {/* Image with Parallax */}
                 <ParallaxImage src={work.image} alt={work.title} index={index} />
 
-                {/* Content */}
-                <div className={`${index % 2 === 1 ? "md:col-start-1 md:row-start-1" : ""}`}>
-                  <div className="mb-4">
-                    <span className="text-4xl md:text-5xl font-display font-bold text-muted-foreground/30">
-                      {work.number}
-                    </span>
-                    <div className="w-12 h-0.5 bg-foreground mt-2" />
-                  </div>
-
-                  <h3 className="text-2xl md:text-3xl font-display font-bold text-foreground mb-6">{work.title}</h3>
-
-                  <div className="space-y-1 mb-8">
-                    {work.metrics.map((metric, i) => (
-                      <p key={i} className="text-muted-foreground">
-                        {metric}
-                      </p>
-                    ))}
-                  </div>
-
-                  <a
-                    href={work.caseStudyLink}
-                    className="inline-flex items-center gap-2 text-foreground font-medium hover:text-accent transition-colors group"
-                  >
-                    <span>View case study</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </a>
-                </div>
+                {/* Content with Parallax */}
+                <ParallaxContent work={work} index={index} />
               </div>
             </motion.div>
           ))}
