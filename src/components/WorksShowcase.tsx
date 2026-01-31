@@ -166,7 +166,6 @@ const works: WorkItem[] = [
 
 export function WorksShowcase() {
   const [selectedWork, setSelectedWork] = useState<WorkItem | null>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
 
   return (
     <section className="py-20 md:py-32 overflow-hidden">
@@ -182,53 +181,50 @@ export function WorksShowcase() {
         </motion.h2>
       </div>
 
-      {/* Horizontal scrollable cards */}
-      <div
-        ref={scrollRef}
-        className="flex gap-6 overflow-x-auto pb-6 px-6 md:px-12 scrollbar-hide snap-x snap-mandatory"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-      >
-        {works.map((work, index) => (
-          <motion.div
-            key={work.title}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.05 }}
-            className="flex-shrink-0 snap-start"
-          >
-            <div
-              onClick={() => setSelectedWork(work)}
-              className="group relative w-[280px] md:w-[320px] bg-card border border-border rounded-2xl overflow-hidden cursor-pointer hover:border-foreground/20 transition-all duration-300 hover:shadow-xl"
+      {/* 2x4 Grid */}
+      <div className="container">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+          {works.slice(0, 8).map((work, index) => (
+            <motion.div
+              key={work.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.05 }}
             >
-              {/* Header with tag and arrow */}
-              <div className="absolute top-0 left-0 right-0 z-10 flex items-center justify-between p-4">
-                <span className="px-3 py-1.5 bg-background/90 backdrop-blur-sm rounded-full text-xs font-medium text-foreground border border-border">
-                  {work.tag}
-                </span>
-                <button className="w-8 h-8 flex items-center justify-center bg-background/90 backdrop-blur-sm rounded-full border border-border group-hover:bg-foreground group-hover:text-background transition-colors">
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
+              <div
+                onClick={() => setSelectedWork(work)}
+                className="group relative bg-card border border-border rounded-2xl overflow-hidden cursor-pointer hover:border-foreground/20 transition-all duration-300 hover:shadow-xl"
+              >
+                {/* Header with tag and arrow */}
+                <div className="absolute top-0 left-0 right-0 z-10 flex items-center justify-between p-3 md:p-4">
+                  <span className="px-2 py-1 md:px-3 md:py-1.5 bg-background/90 backdrop-blur-sm rounded-full text-[10px] md:text-xs font-medium text-foreground border border-border">
+                    {work.tag}
+                  </span>
+                  <button className="w-6 h-6 md:w-8 md:h-8 flex items-center justify-center bg-background/90 backdrop-blur-sm rounded-full border border-border group-hover:bg-foreground group-hover:text-background transition-colors">
+                    <ArrowRight className="w-3 h-3 md:w-4 md:h-4" />
+                  </button>
+                </div>
 
-              {/* Image */}
-              <div className="aspect-[4/5] overflow-hidden">
-                <img
-                  src={work.image}
-                  alt={work.title}
-                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
+                {/* Image */}
+                <div className="aspect-[4/5] overflow-hidden">
+                  <img
+                    src={work.image}
+                    alt={work.title}
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
 
-              {/* Title at bottom */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-background via-background/80 to-transparent">
-                <p className="text-sm text-muted-foreground line-clamp-2">
-                  {work.title}
-                </p>
+                {/* Title at bottom */}
+                <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 bg-gradient-to-t from-background via-background/80 to-transparent">
+                  <p className="text-xs md:text-sm text-muted-foreground line-clamp-2">
+                    {work.title}
+                  </p>
+                </div>
               </div>
-            </div>
-          </motion.div>
-        ))}
+            </motion.div>
+          ))}
+        </div>
       </div>
 
       {/* Dialog for detailed view */}
