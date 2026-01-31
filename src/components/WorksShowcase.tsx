@@ -340,7 +340,7 @@ export function WorksShowcase() {
 
       <div
         ref={containerRef}
-        className="relative mx-auto h-[500px] md:h-[600px] max-w-6xl overflow-hidden rounded-2xl bg-gradient-to-br from-background via-muted/50 to-background border border-border"
+        className="relative mx-auto h-[350px] md:h-[420px] max-w-5xl overflow-hidden rounded-2xl bg-gradient-to-br from-background via-muted/50 to-background border border-border"
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
         onPointerLeave={handlePointerUp}
