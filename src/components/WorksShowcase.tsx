@@ -183,7 +183,7 @@ export function WorksShowcase() {
 
       {/* 2x4 Grid */}
       <div className="container">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
           {works.map((work, index) => (
             <motion.div
               key={work.title}
