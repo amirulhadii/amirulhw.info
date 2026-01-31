@@ -184,7 +184,7 @@ export function WorksShowcase() {
       {/* 2x4 Grid */}
       <div className="container">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-          {works.slice(0, 8).map((work, index) => (
+          {works.map((work, index) => (
             <motion.div
               key={work.title}
               initial={{ opacity: 0, y: 30 }}
