@@ -1,5 +1,6 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef } from "react";
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import workSpeaker1 from "@/assets/work-speaker-1.png";
 import workSpeaker2 from "@/assets/work-speaker-2.png";
@@ -18,21 +19,13 @@ import businessImpactPlaceholder from "/business-impact-placeholder.svg";
 interface WorkItem {
   image: string;
   title: string;
+  tag: string;
   description: string;
   popupImages: string[];
   longDescription: string;
   readMoreLink?: string;
 }
 
-interface BubbleState {
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-  size: number;
-}
-
-// Helper to render text with clickable links
 // Helper to render description text only (without link)
 const renderDescriptionText = (text: string) => {
   return <span className="whitespace-pre-line">{text}</span>;
@@ -41,7 +34,8 @@ const renderDescriptionText = (text: string) => {
 const works: WorkItem[] = [
   {
     image: workSpeaker1,
-    title: "Speakers for Corporate Training",
+    tag: "Speaking",
+    title: "Corporate Training",
     description: "Friendly chat to discuss more about Product and Technology",
     popupImages: [workSpeaker1, workSpeaker2],
     longDescription:
@@ -49,7 +43,8 @@ const works: WorkItem[] = [
   },
   {
     image: workLionParcel,
-    title: "Lion Parcel Customer Apps - Friction Reduction",
+    tag: "Logistics",
+    title: "Lion Parcel UX",
     description: "Reduced conversion friction by 16-33% through systematic UX optimization and A/B testing",
     popupImages: [workLionParcel],
     longDescription:
@@ -57,7 +52,8 @@ const works: WorkItem[] = [
   },
   {
     image: workBeautyAr1,
-    title: "Indonesia's First Beauty AR for E-Commerce",
+    tag: "AR/VR",
+    title: "Beauty AR Try-On",
     description: "Launched AR virtual try-on during COVID-19, driving +15% paid orders for the featured products",
     popupImages: [workBeautyAr1, workBeautyAr2],
     longDescription:
@@ -67,7 +63,8 @@ const works: WorkItem[] = [
   },
   {
     image: workTiktokTokopedia,
-    title: "Core Product Integration - Tokopedia × TikTok Shop",
+    tag: "Integration",
+    title: "Tokopedia × TikTok",
     description: "Led buyer experience integration for SEA's largest marketplace merger, managing 70% GMV share",
     popupImages: [workTiktokTokopedia],
     longDescription:
@@ -77,7 +74,8 @@ const works: WorkItem[] = [
   },
   {
     image: workVrTraining,
-    title: "AR/VR Training System for Fertilizer Manufacturing",
+    tag: "AR/VR",
+    title: "VR Training System",
     description: "Built Indonesia's first AR/VR learning management system for industrial safety training",
     popupImages: [workVrTraining],
     longDescription:
@@ -86,7 +84,8 @@ const works: WorkItem[] = [
   },
   {
     image: workSwing1,
-    title: "Swing - Sports Booking, Tournament, and Marketplace",
+    tag: "Platform",
+    title: "Swing Sports App",
     description: "End-to-end sports platform connecting venues, players, and tournaments across Indonesia",
     popupImages: [workSwing1, workSwing2, workSwing3],
     longDescription:
@@ -95,7 +94,8 @@ const works: WorkItem[] = [
   },
   {
     image: workArsitag,
-    title: "Marketplace for Architects, Designers & Contractors",
+    tag: "Marketplace",
+    title: "Arsitag Platform",
     description: "Platform connecting property owners with verified design professionals and contractors",
     popupImages: [workArsitag],
     longDescription:
@@ -104,7 +104,8 @@ const works: WorkItem[] = [
   },
   {
     image: workCareerProgression,
-    title: "Career Progression & Industry Recognition",
+    tag: "Career",
+    title: "7 Years of Growth",
     description: "7 years from engineer to Head of Product across SEA's leading tech companies",
     popupImages: [workCareerProgression],
     longDescription:
@@ -112,7 +113,8 @@ const works: WorkItem[] = [
   },
   {
     image: businessImpactPlaceholder,
-    title: "Business Impact Across 7+ Years",
+    tag: "Impact",
+    title: "Business Metrics",
     description: "Every product decision backed by measurable business outcomes—conversion, revenue, and retention",
     popupImages: [businessImpactPlaceholder],
     longDescription:
@@ -162,316 +164,111 @@ const works: WorkItem[] = [
   },
 ];
 
-// Generate random initial positions
-const generateInitialBubbles = (count: number, containerWidth: number, containerHeight: number): BubbleState[] => {
-  const bubbles: BubbleState[] = [];
-  const sizes = [80, 100, 120, 140, 100, 120, 80, 100, 120]; // Varied sizes
-  
-  for (let i = 0; i < count; i++) {
-    const size = sizes[i % sizes.length];
-    const padding = size / 2;
-    bubbles.push({
-      x: padding + Math.random() * (containerWidth - size - padding * 2),
-      y: padding + Math.random() * (containerHeight - size - padding * 2),
-      vx: (Math.random() - 0.5) * 2,
-      vy: (Math.random() - 0.5) * 2,
-      size,
-    });
-  }
-  return bubbles;
-};
-
 export function WorksShowcase() {
   const [selectedWork, setSelectedWork] = useState<WorkItem | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [bubbles, setBubbles] = useState<BubbleState[]>([]);
-  const [draggingIndex, setDraggingIndex] = useState<number | null>(null);
-  const [crackingIndex, setCrackingIndex] = useState<number | null>(null);
-  const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
-  const animationRef = useRef<number>();
-  const dragStart = useRef<{ x: number; y: number; bubbleX: number; bubbleY: number } | null>(null);
-
-  // Handle opening dialog with optional crack animation
-  const openWithCrack = useCallback((index: number, withCrack: boolean) => {
-    if (withCrack) {
-      setCrackingIndex(index);
-      // Wait for crack animation to complete before opening dialog
-      setTimeout(() => {
-        setCrackingIndex(null);
-        setSelectedWork(works[index]);
-      }, 600);
-    } else {
-      setSelectedWork(works[index]);
-    }
-  }, []);
-
-  // Initialize bubbles on mount and resize
-  useEffect(() => {
-    const updateSize = () => {
-      if (containerRef.current) {
-        const rect = containerRef.current.getBoundingClientRect();
-        setContainerSize({ width: rect.width, height: rect.height });
-        setBubbles(generateInitialBubbles(works.length, rect.width, rect.height));
-      }
-    };
-
-    updateSize();
-    window.addEventListener("resize", updateSize);
-    return () => window.removeEventListener("resize", updateSize);
-  }, []);
-
-  // Physics animation loop with auto-movement
-  useEffect(() => {
-    if (containerSize.width === 0 || containerSize.height === 0) return;
-
-    const MIN_VELOCITY = 0.3; // Minimum speed to keep bubbles moving
-
-    const animate = () => {
-      setBubbles((prev) =>
-        prev.map((bubble, index) => {
-          if (index === draggingIndex || index === crackingIndex) return bubble;
-
-          let { x, y, vx, vy, size } = bubble;
-
-          // Apply velocity
-          x += vx;
-          y += vy;
-
-          // Apply friction
-          vx *= 0.995;
-          vy *= 0.995;
-
-          // Maintain minimum velocity for continuous slow movement
-          const speed = Math.sqrt(vx * vx + vy * vy);
-          if (speed < MIN_VELOCITY && speed > 0) {
-            const scale = MIN_VELOCITY / speed;
-            vx *= scale;
-            vy *= scale;
-          } else if (speed === 0) {
-            // Give random direction if completely stopped
-            const angle = Math.random() * Math.PI * 2;
-            vx = Math.cos(angle) * MIN_VELOCITY;
-            vy = Math.sin(angle) * MIN_VELOCITY;
-          }
-
-          // Bounce off walls
-          if (x <= 0 || x >= containerSize.width - size) {
-            vx = -vx * 0.8;
-            x = Math.max(0, Math.min(x, containerSize.width - size));
-          }
-          if (y <= 0 || y >= containerSize.height - size) {
-            vy = -vy * 0.8;
-            y = Math.max(0, Math.min(y, containerSize.height - size));
-          }
-
-          return { x, y, vx, vy, size };
-        })
-      );
-
-      animationRef.current = requestAnimationFrame(animate);
-    };
-
-    animationRef.current = requestAnimationFrame(animate);
-    return () => {
-      if (animationRef.current) cancelAnimationFrame(animationRef.current);
-    };
-  }, [containerSize, draggingIndex, crackingIndex]);
-
-  const handlePointerDown = useCallback((e: React.PointerEvent, index: number) => {
-    e.preventDefault();
-    (e.target as HTMLElement).setPointerCapture(e.pointerId);
-    setDraggingIndex(index);
-    dragStart.current = {
-      x: e.clientX,
-      y: e.clientY,
-      bubbleX: bubbles[index]?.x || 0,
-      bubbleY: bubbles[index]?.y || 0,
-    };
-  }, [bubbles]);
-
-  const handlePointerMove = useCallback((e: React.PointerEvent) => {
-    if (draggingIndex === null || !dragStart.current) return;
-
-    const startRef = dragStart.current;
-    const dx = e.clientX - startRef.x;
-    const dy = e.clientY - startRef.y;
-
-    setBubbles((prev) =>
-      prev.map((bubble, index) => {
-        if (index !== draggingIndex) return bubble;
-        const newX = Math.max(0, Math.min(startRef.bubbleX + dx, containerSize.width - bubble.size));
-        const newY = Math.max(0, Math.min(startRef.bubbleY + dy, containerSize.height - bubble.size));
-        return { ...bubble, x: newX, y: newY };
-      })
-    );
-  }, [draggingIndex, containerSize]);
-
-  const handlePointerUp = useCallback((e: React.PointerEvent) => {
-    if (draggingIndex !== null && dragStart.current) {
-      const dx = e.clientX - dragStart.current.x;
-      const dy = e.clientY - dragStart.current.y;
-      
-      // If barely moved, treat as click (no crack animation)
-      if (Math.abs(dx) < 5 && Math.abs(dy) < 5) {
-        openWithCrack(draggingIndex, false);
-      } else {
-        // Dropped after drag - trigger egg crack animation then open
-        openWithCrack(draggingIndex, true);
-      }
-    }
-    setDraggingIndex(null);
-    dragStart.current = null;
-  }, [draggingIndex, openWithCrack]);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section className="py-16 md:py-24 overflow-hidden bg-muted/30">
-      <div className="container mb-8">
+    <section className="py-20 md:py-32 overflow-hidden">
+      <div className="container mb-12">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-3xl md:text-4xl font-display font-bold tracking-tight"
+          className="text-4xl md:text-5xl font-display font-bold tracking-tight"
         >
           Everything I've Built
         </motion.h2>
-        <p className="text-muted-foreground mt-2 text-sm">Click and drag the bubbles to play!</p>
       </div>
 
+      {/* Horizontal scrollable cards */}
       <div
-        ref={containerRef}
-        className="relative mx-auto h-[350px] md:h-[420px] max-w-5xl overflow-hidden rounded-2xl bg-gradient-to-br from-background via-muted/50 to-background border border-border"
-        onPointerMove={handlePointerMove}
-        onPointerUp={handlePointerUp}
-        onPointerLeave={handlePointerUp}
+        ref={scrollRef}
+        className="flex gap-6 overflow-x-auto pb-6 px-6 md:px-12 scrollbar-hide snap-x snap-mandatory"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
-        {bubbles.map((bubble, index) => (
+        {works.map((work, index) => (
           <motion.div
-            key={works[index].title}
-            className={`absolute cursor-grab active:cursor-grabbing select-none ${
-              crackingIndex === index ? "egg-crack" : ""
-            }`}
-            style={{
-              left: bubble.x,
-              top: bubble.y,
-              width: bubble.size,
-              height: bubble.size,
-            }}
-            animate={{
-              scale: draggingIndex === index ? 1.1 : crackingIndex === index ? 1.2 : 1,
-            }}
-            whileHover={{
-              scale: draggingIndex === index ? 1.1 : crackingIndex === index ? 1.2 : 1.08,
-              transition: { duration: 0.2 },
-            }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            onPointerDown={(e) => handlePointerDown(e, index)}
+            key={work.title}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: index * 0.05 }}
+            className="flex-shrink-0 snap-start"
           >
             <div
-              className={`w-full h-full rounded-full overflow-hidden border-4 border-background shadow-lg hover:shadow-xl transition-shadow bg-card relative ${
-                crackingIndex === index ? "egg-crack-inner" : ""
-              }`}
-              style={{
-                boxShadow: draggingIndex === index 
-                  ? "0 20px 40px rgba(0,0,0,0.3)" 
-                  : crackingIndex === index
-                    ? "0 0 40px rgba(255,200,100,0.6)"
-                    : "0 8px 24px rgba(0,0,0,0.15)",
-              }}
+              onClick={() => setSelectedWork(work)}
+              className="group relative w-[280px] md:w-[320px] bg-card border border-border rounded-2xl overflow-hidden cursor-pointer hover:border-foreground/20 transition-all duration-300 hover:shadow-xl"
             >
-              <img
-                src={works[index].image}
-                alt={works[index].title}
-                className="w-full h-full object-cover pointer-events-none"
-                draggable={false}
-              />
-              {/* Crack overlay */}
-              {crackingIndex === index && (
-                <div className="absolute inset-0 egg-crack-overlay">
-                  <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                    <path
-                      className="crack-line"
-                      d="M50 0 L45 20 L55 35 L40 50 L60 65 L45 80 L50 100"
-                      stroke="white"
-                      strokeWidth="3"
-                      fill="none"
-                      strokeLinecap="round"
-                    />
-                    <path
-                      className="crack-line delay-1"
-                      d="M30 30 L40 45 L25 60"
-                      stroke="white"
-                      strokeWidth="2"
-                      fill="none"
-                      strokeLinecap="round"
-                    />
-                    <path
-                      className="crack-line delay-2"
-                      d="M70 40 L60 55 L75 70"
-                      stroke="white"
-                      strokeWidth="2"
-                      fill="none"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                </div>
-              )}
-            </div>
-            {/* Title tooltip on hover */}
-            <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap opacity-0 hover:opacity-100 transition-opacity pointer-events-none">
-              <span className="text-xs bg-foreground text-background px-2 py-1 rounded">
-                {works[index].title.length > 25 ? works[index].title.slice(0, 25) + "..." : works[index].title}
-              </span>
+              {/* Header with tag and arrow */}
+              <div className="absolute top-0 left-0 right-0 z-10 flex items-center justify-between p-4">
+                <span className="px-3 py-1.5 bg-background/90 backdrop-blur-sm rounded-full text-xs font-medium text-foreground border border-border">
+                  {work.tag}
+                </span>
+                <button className="w-8 h-8 flex items-center justify-center bg-background/90 backdrop-blur-sm rounded-full border border-border group-hover:bg-foreground group-hover:text-background transition-colors">
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* Image */}
+              <div className="aspect-[4/5] overflow-hidden">
+                <img
+                  src={work.image}
+                  alt={work.title}
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+
+              {/* Title at bottom */}
+              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-background via-background/80 to-transparent">
+                <p className="text-sm text-muted-foreground line-clamp-2">
+                  {work.title}
+                </p>
+              </div>
             </div>
           </motion.div>
         ))}
       </div>
 
-      {/* Popup Dialog */}
-      <Dialog open={!!selectedWork} onOpenChange={(open) => !open && setSelectedWork(null)}>
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle className="text-2xl font-display font-bold">{selectedWork?.title}</DialogTitle>
-            {/* Read more link at top */}
-            {selectedWork?.readMoreLink && (
-              <a
-                href={selectedWork.readMoreLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary hover:underline font-medium text-sm mt-2 inline-block"
-                onClick={(e) => e.stopPropagation()}
-              >
-                Read more →
-              </a>
-            )}
-          </DialogHeader>
-
+      {/* Dialog for detailed view */}
+      <Dialog open={!!selectedWork} onOpenChange={() => setSelectedWork(null)}>
+        <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto">
           {selectedWork && (
-            <div className="space-y-6">
-              {/* Images Grid */}
-              <div
-                className={`grid gap-4 ${
-                  selectedWork.popupImages.length === 1
-                    ? "grid-cols-1"
-                    : selectedWork.popupImages.length === 2
-                      ? "grid-cols-2"
-                      : "grid-cols-1 md:grid-cols-3"
-                }`}
-              >
-                {selectedWork.popupImages.map((img, idx) => (
-                  <div key={idx} className="overflow-hidden rounded-lg border border-border">
-                    <img src={img} alt={`${selectedWork.title} - ${idx + 1}`} className="w-full h-auto object-cover" />
-                  </div>
+            <>
+              <DialogHeader>
+                <DialogTitle className="text-2xl font-display">
+                  {selectedWork.title}
+                </DialogTitle>
+                {selectedWork.readMoreLink && (
+                  <a
+                    href={selectedWork.readMoreLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-accent hover:underline text-sm mt-2"
+                  >
+                    Read more <ArrowRight className="w-3 h-3" />
+                  </a>
+                )}
+              </DialogHeader>
+
+              {/* Image gallery */}
+              <div className="space-y-4 mt-4">
+                {selectedWork.popupImages.map((img, i) => (
+                  <img
+                    key={i}
+                    src={img}
+                    alt={`${selectedWork.title} ${i + 1}`}
+                    className="w-full rounded-lg"
+                  />
                 ))}
               </div>
 
-              {/* Long Description */}
-              <div className="prose prose-lg max-w-none">
-                <div className="text-muted-foreground leading-relaxed">
-                  {renderDescriptionText(selectedWork.longDescription)}
-                </div>
+              {/* Description */}
+              <div className="mt-6 text-muted-foreground leading-relaxed">
+                {renderDescriptionText(selectedWork.longDescription)}
               </div>
-            </div>
+            </>
           )}
         </DialogContent>
       </Dialog>
